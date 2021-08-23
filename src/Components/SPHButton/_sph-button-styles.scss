@@ -1,0 +1,133 @@
+//
+// Copyright (c) 2021 SurPath Hub
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+
+@use '../../Core/Elevation';
+@use '../../Core/Typography';
+@use '../../Core/Theme';
+
+@mixin use($theme: ()) {
+
+    $_init-theme: (
+        'default': #c4c4c4,
+        'light': #fff,
+        'dark': #757575,
+        'ink': #000,
+        'elevation': #000
+    );
+    $_merged-theme: Theme.merge($theme, $_init-theme);
+
+    $_fill-light: Theme.get-theme-value('light', $_merged-theme);
+    $_fill: Theme.get-theme-value('default', $_merged-theme);
+    $_fill-dark: Theme.get-theme-value('dark', $_merged-theme);
+    $_ink: Theme.get-theme-value('ink', $_merged-theme);
+    $_elevation: Theme.get-theme-value('elevation', $_merged-theme);
+
+    .sph-button {
+        display: inline-flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        padding: 0.4rem 0.7rem;
+        border-radius: 0.3rem;
+        border: 1px solid rgba(0 0 0 / 0);
+        background: rgba(0 0 0 / 0);
+        color: $_fill;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.1s ease;
+        outline: none;
+
+        @include Elevation.apply(0, $color: $_elevation);
+
+        &:hover {
+            background: rgba($_fill, 0);
+        }
+
+        &:focus {
+            background: rgba($_fill, 20%);
+        }
+
+        &:active {
+            background: rgba($_fill, 30%);
+        }
+
+        &:disabled {
+            color: $_fill-dark;
+            cursor: default;
+
+            &:hover {
+                background: rgba($_fill, 0);
+            }
+        }
+
+        > * + * {
+            margin-left: 5px;
+        }
+
+        .sph-button__icon {
+            color: inherit;
+            font-size: Typography.px-to-rem(18px);
+        }
+
+        .sph-button__label {
+            color: inherit;
+            font-weight: 700;
+            font-size: Typography.px-to-rem(14px);
+        }
+
+        &.sph-button--outlined {
+            border-color: $_fill;
+
+            &:disabled {
+                border-color: $_fill-dark;
+                cursor: default;
+            }
+        }
+
+        &.sph-button--filled {
+            border-color: $_fill;
+            background-color: $_fill;
+            color: $_ink;
+
+            &:hover,
+            &:focus {
+                @include Elevation.apply(4);
+            }
+
+            &:active {
+                background-color: $_fill-light;
+                border-color: $_fill-light;
+                @include Elevation.apply(7);
+            }
+
+            &:disabled {
+                background-color: $_fill-dark;
+                border-color: $_fill-dark;
+                cursor: default;
+
+                &:hover {
+                    background: $_fill-dark;
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+}
