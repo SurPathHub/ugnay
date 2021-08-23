@@ -1,0 +1,25 @@
+{
+  "name": "ugnay",
+  "version": "0.1.0-unstable",
+  "description": "SurPath Hub's design system implementation for the web. Made with ❤, TypeScript, and SCSS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SurPathHub/ugnay-components-web.git"
+  },
+  "keywords": [
+    "design-system",
+    "scss",
+    "css",
+    "frontend"
+  ],
+  "author": "SurPath Hub Community",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SurPathHub/ugnay-components-web/issues"
+  },
+  "homepage": "https://github.com/SurPathHub/ugnay-components-web#readme"
+}
