@@ -1,6 +1,7 @@
 @use '../../src/Core/Theme';
 @use '../../src/Components/SPHButton';
 @use '../../src/Components/SPHCard';
+@use '../../src/Components/SPHHeader';
 @use '../../src/Components/SPHSnackbar';
 @use '../../src/Components/SPHTextField';
 @use '../../src/Components/SPHTooltip';
@@ -13,16 +14,16 @@
 
 $theme: (
     primary: (
-        'light': #9c4dcc,
-        'default': #6a1b9a,
-        'dark': #38006b,
+        'light': #6f6f6f,
+        'default': #474747,
+        'dark': #212121,
         'ink': #fff,
         'elevation': #000
     ),
     secondary: (
-        'light': #ffba55,
-        'default': #ffa300,
-        'dark': #935f00,
+        'light': #bdff9f,
+        'default': #7ed957,
+        'dark': #488630,
         'ink': #000,
         'elevation': #000
     )
@@ -37,10 +38,15 @@ $theme: (
     scroll-behavior: smooth;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 body {
     width: 100%;
     height: 100vh;
-    background: #0f0021;
+    background: #181818;
 }
 
 section {
@@ -55,6 +61,7 @@ section {
     width: calc(100% - 20px);
     max-width: 1077px;
     margin: 0 auto;
+    padding: 67px 0 0 0;
 }
 
 .grid {
@@ -74,10 +81,16 @@ section {
     }
 }
 
+#buttons {
+    display: flex !important;
+    flex-flow: row wrap !important;
+}
+
 // Components with active $theme parameter
 @include SPHButton.use(Theme.pick(secondary, $theme));
 @include SPHCard.use(Theme.pick(primary, $theme));
 @include SPHTextField.use(Theme.pick(primary, $theme));
+@include SPHHeader.use(Theme.pick(primary, $theme));
 
 // Components with dead $theme parameter
 @include SPHSnackbar.use();
