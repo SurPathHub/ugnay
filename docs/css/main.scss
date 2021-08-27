@@ -2,6 +2,7 @@
 @use '../../src/Components/SPHButton';
 @use '../../src/Components/SPHCard';
 @use '../../src/Components/SPHHeader';
+@use '../../src/Components/SPHNavbar';
 @use '../../src/Components/SPHSnackbar';
 @use '../../src/Components/SPHTextField';
 @use '../../src/Components/SPHTooltip';
@@ -91,6 +92,7 @@ section {
 @include SPHCard.use(Theme.pick(primary, $theme));
 @include SPHTextField.use(Theme.pick(primary, $theme));
 @include SPHHeader.use(Theme.pick(primary, $theme));
+@include SPHNavbar.use(Theme.pick(primary, $theme));
 
 // Components with dead $theme parameter
 @include SPHSnackbar.use();

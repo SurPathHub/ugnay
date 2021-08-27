@@ -20,3 +20,64 @@
 // SOFTWARE.
 //
 
+@use '../../../Core/Elevation';
+@use '../../../Core/Typography';
+@use '../../../Core/Theme';
+
+@mixin use($theme: ()) {
+
+    $_init-theme: (
+        'default': #c4c4c4,
+        'light': #fff,
+        'dark': #757575,
+        'ink': #000,
+        'elevation': #000
+    );
+    $_merged-theme: Theme.merge($theme, $_init-theme);
+
+    $_fill-light: Theme.get-theme-value('light', $_merged-theme);
+    $_fill: Theme.get-theme-value('default', $_merged-theme);
+    $_fill-dark: Theme.get-theme-value('dark', $_merged-theme);
+    $_ink: Theme.get-theme-value('ink', $_merged-theme);
+    $_elevation: Theme.get-theme-value('elevation', $_merged-theme);
+
+    .sph-navbar__item {
+        width: 100%;
+        height: auto;
+        padding: 0.7rem;
+        border-radius: 0.5rem;
+
+        background: $_fill;
+        color: $_ink;
+
+        &:hover {
+            background: $_fill-light;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        &.active {
+            font-weight: 700;
+        }
+
+        @media (min-width: 570px) {
+            width: max-content;
+            box-shadow: none;
+            background-color: rgba(0 0 0 / 0);
+            border-color: rgba(0 0 0 / 0);
+
+            &:hover {
+                background-color: rgba(0 0 0 / 0);
+                border-color: rgba(0 0 0 / 0);
+                text-decoration: underline;
+                text-decoration-color: var(--sc-theme--secondary);
+            }
+
+            p {
+                width: max-content;
+            }
+        }
+    }
+}

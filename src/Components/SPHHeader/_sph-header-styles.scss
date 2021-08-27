@@ -35,37 +35,53 @@
     );
     $_merged-theme: Theme.merge($theme, $_init-theme);
 
-    $_fill-light: Theme.get-theme-value('light', $_merged-theme);
-    $_fill: Theme.get-theme-value('default', $_merged-theme);
     $_fill-dark: Theme.get-theme-value('dark', $_merged-theme);
     $_ink: Theme.get-theme-value('ink', $_merged-theme);
     $_elevation: Theme.get-theme-value('elevation', $_merged-theme);
 
     .sph-header {
         width: 100%;
+        height: 55px;
         position: fixed;
         top: 0;
         background: $_fill-dark;
         color: $_ink;
 
+        z-index: 100;
+
         @include Elevation.apply(5, $color: $_elevation);
 
-        .sph-header__mast {
-            display: grid;
-            grid-template-columns: 55px auto;
-            align-items: center;
+        .sph-header__wrap {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
 
             max-width: 1270px;
 
             width: calc(100% - 20px);
             margin: 0 auto;
 
-            .sph-header__logo {
-                width: 55px;
-                height: 55px;
+            > a {
+                flex-basis: max-content;
             }
-            .sph-header__text {
-                font-size: Typography.px-to-rem(24px);
+
+            .sph-header__mast {
+                display: grid;
+                grid-template-columns: 55px auto;
+                align-items: center;
+
+                .sph-header__logo {
+                    width: 55px;
+                    height: 55px;
+                }
+                .sph-header__text {
+                    font-size: Typography.px-to-rem(24px);
+                }
+            }
+
+            .sph-header__actions {
+                display: grid;
+                place-items: center;
             }
         }
     }

@@ -20,3 +20,90 @@
 // SOFTWARE.
 //
 
+@use '../../Core/Elevation';
+@use '../../Core/Typography';
+@use '../../Core/Theme';
+
+@use 'SPHNavItem';
+
+@mixin use($theme: ()) {
+
+    $_init-theme: (
+        'default': #c4c4c4,
+        'light': #fff,
+        'dark': #757575,
+        'ink': #000,
+        'elevation': #000
+    );
+    $_merged-theme: Theme.merge($theme, $_init-theme);
+
+    $_fill-light: Theme.get-theme-value('light', $_merged-theme);
+    $_fill: Theme.get-theme-value('default', $_merged-theme);
+    $_fill-dark: Theme.get-theme-value('dark', $_merged-theme);
+    $_ink: Theme.get-theme-value('ink', $_merged-theme);
+    $_elevation: Theme.get-theme-value('elevation', $_merged-theme);
+
+    .sph-navbar__trigger {
+        width: 100%;
+        display: grid;
+        place-items: center;
+        padding: 0 0.7rem;
+        margin-bottom: 3px;
+
+        border: none;
+        color: $_ink;
+        background: rgba(0 0 0 / 0);
+
+        > * {
+            font-size: 24px;
+        }
+
+        @media (min-width: 570px) {
+            display: none;
+        }
+    }
+
+    .sph-navbar {
+        width: 270px;
+        height: 100%;
+        display: none;
+        position: fixed;
+        right: 0;
+        top: 55px;
+        padding: 1.2rem 1.7rem 1.2rem 1.2rem;
+        background: $_fill;
+        color: $_ink;
+        transition: all 0.1s ease;
+
+        z-index: 90;
+
+        @include Elevation.apply(5);
+
+        &.visible {
+            display: block;
+            transition: all 0.1s ease;
+        }
+
+        @media (min-width: 570px) {
+            width: 100%;
+            height: auto;
+
+            position: relative;
+            right: 0;
+            top: 0;
+
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-end;
+
+            padding: 0;
+
+            background: rgba(0 0 0 / 0);
+
+            @include Elevation.apply(0);
+        }
+
+        @include SPHNavItem.use($theme);
+
+    }
+}

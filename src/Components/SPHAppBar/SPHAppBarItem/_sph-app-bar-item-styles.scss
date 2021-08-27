@@ -20,29 +20,6 @@
 // SOFTWARE.
 //
 
-@use 'sass:map';
-@use 'sass:list';
-@use 'sass:meta';
-
-$_valid-theme-keys: (
-    'default',
-    'light',
-    'dark',
-    'ink',
-    'elevation',
-    'active'
-);
-
-@function get-theme-value($theme-key, $theme-map) {
-    @if _validate-theme-key($theme-key) {
-        @return map.get($theme-map, $theme-key);
-    }
-}
-
-@function _validate-theme-key($theme-key) {
-    @if not list.index($_valid-theme-keys, $theme-key) {
-        @error "Invalid theme key: #{$theme-key}! Please choose from the following valid keys: #{$_valid-theme-keys}.";
-    }
-
-    @return true;
+@mixin use($theme: ()) {
+    //
 }
