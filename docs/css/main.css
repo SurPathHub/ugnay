@@ -287,17 +287,24 @@ section {
 }
 @media (min-width: 570px) {
   .sph-navbar {
-    width: 100%;
-    height: auto;
+    display: flex;
+    align-items: center;
     position: relative;
     right: 0;
     top: 0;
+    padding: 0;
+    background: rgba(0, 0, 0, 0);
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);
+  }
+}
+@media (min-width: 570px) {
+  .sph-navbar .sph-navbar__container {
+    width: 100%;
+    height: auto;
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-end;
     padding: 0;
-    background: rgba(0, 0, 0, 0);
-    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12);
   }
 }
 .sph-navbar .sph-navbar__item {

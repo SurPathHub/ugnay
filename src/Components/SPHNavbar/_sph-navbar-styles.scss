@@ -85,22 +85,25 @@
         }
 
         @media (min-width: 570px) {
-            width: 100%;
-            height: auto;
-
+            display: flex;
+            align-items: center;
             position: relative;
             right: 0;
             top: 0;
-
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: flex-end;
-
             padding: 0;
-
             background: rgba(0 0 0 / 0);
-
             @include Elevation.apply(0);
+        }
+
+        .sph-navbar__container {
+            @media (min-width: 570px) {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: flex-end;
+                padding: 0;
+            }
         }
 
         @include SPHNavItem.use($theme);
