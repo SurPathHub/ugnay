@@ -27,18 +27,21 @@
 @mixin use(
     $fill: secondary,
     $ink: on-secondary,
-    $radius: small-radius,
+    $radius: small-radius
 ) {
 
     .sph-button {
+
+        @content;
+
         display: inline-flex;
         flex-flow: row nowrap;
         align-items: center;
         padding: 0.5rem 0.7rem;
-        border-radius: Theme.get-theme-key_($radius);
+        border-radius: var(--sph-button-radius, Theme.get-theme-key_($radius));
         border: 1px solid rgba(0 0 0 / 0);
         background: rgba(0 0 0 / 0);
-        color: Theme.get-theme-key_($fill);
+        color: var(--sph-button-fill, Theme.get-theme-key_($fill));
         cursor: pointer;
         user-select: none;
         transition: all 0.1s ease;
@@ -51,11 +54,11 @@
         }
 
         &:active {
-            color: Theme.get-theme-key_($fill, light);
+            color: var(--sph-button-active-fill, Theme.get-theme-key_($fill, light));
         }
 
         &:disabled {
-            color: Theme.get-theme-key_($fill, dark);
+            color: var(--sph-button-disabled-fill, Theme.get-theme-key_($fill, dark));
             cursor: default;
 
             &:hover {
@@ -82,7 +85,7 @@
             border-color: #535353;
 
             &:focus {
-                border-color: Theme.get-theme-key_($fill);
+                border-color: var(--sph-button-border, Theme.get-theme-key_($fill));
             }
 
             &:disabled {
@@ -92,9 +95,9 @@
         }
 
         &.sph-button--filled {
-            border-color: Theme.get-theme-key_($fill);
-            background-color: Theme.get-theme-key_($fill);
-            color: Theme.get-theme-key_($ink);
+            border-color: var(--sph-button-border, Theme.get-theme-key_($fill));
+            background-color: var(--sph-button-fill, Theme.get-theme-key_($fill));
+            color: var(--sph-button-ink, Theme.get-theme-key_($ink));
 
             &:hover,
             &:focus {
@@ -102,18 +105,18 @@
             }
 
             &:active {
-                background-color: Theme.get-theme-key_($fill, light);
-                border-color: Theme.get-theme-key_($fill, light);
+                background-color: var(--sph-button-active-fill, Theme.get-theme-key_($fill, light));
+                border-color: var(--sph-button-active-border, Theme.get-theme-key_($fill, light));
                 @include Elevation.apply(7);
             }
 
             &:disabled {
-                background-color: Theme.get-theme-key_($fill, dark);
-                border-color: Theme.get-theme-key_($fill, dark);
+                background-color: var(--sph-button-disabled-fill, Theme.get-theme-key_($fill, dark));
+                border-color: var(--sph-button-disabled-border, Theme.get-theme-key_($fill, dark));
                 cursor: default;
 
                 &:hover {
-                    background: Theme.get-theme-key_($fill, dark);
+                    background: var(--sph-button-disabled-fill, Theme.get-theme-key_($fill, dark));
                     box-shadow: none;
                 }
             }

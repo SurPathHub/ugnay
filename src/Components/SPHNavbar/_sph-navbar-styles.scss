@@ -26,22 +26,13 @@
 
 @use 'SPHNavItem';
 
-@mixin use($theme: ()) {
+@mixin use(
+    $fill: primary,
+    $ink: on-primary,
+    $radius: large-radius
+) {
 
-    $_init-theme: (
-        'default': #c4c4c4,
-        'light': #fff,
-        'dark': #757575,
-        'ink': #000,
-        'elevation': #000
-    );
-    $_merged-theme: Theme.merge($theme, $_init-theme);
-
-    $_fill-light: Theme.get-theme-value('light', $_merged-theme);
-    $_fill: Theme.get-theme-value('default', $_merged-theme);
-    $_fill-dark: Theme.get-theme-value('dark', $_merged-theme);
-    $_ink: Theme.get-theme-value('ink', $_merged-theme);
-    $_elevation: Theme.get-theme-value('elevation', $_merged-theme);
+    $_r: Theme.get-theme-key_($radius);
 
     .sph-navbar__trigger {
         width: 100%;
@@ -51,7 +42,7 @@
         margin-bottom: 3px;
 
         border: none;
-        color: $_ink;
+        color: Theme.get-theme-key_($ink);
         background: rgba(0 0 0 / 0);
 
         > * {
@@ -64,6 +55,9 @@
     }
 
     .sph-navbar {
+
+        @content;
+
         width: 270px;
         height: 100%;
         display: none;
@@ -71,8 +65,9 @@
         right: 0;
         top: 55px;
         padding: 1.2rem 1.7rem 1.2rem 1.2rem;
-        background: $_fill;
-        color: $_ink;
+        background: var(--sph-navbar-fill, Theme.get-theme-key_($fill));
+        color: var(--sph-navbar-ink, Theme.get-theme-key_($ink));
+        border-radius: var(--sph-navbar-radius, $_r 0 0 0);
         transition: all 0.1s ease;
 
         z-index: 90;
@@ -106,7 +101,7 @@
             }
         }
 
-        @include SPHNavItem.use($theme);
+        @include SPHNavItem.use($fill, $ink);
 
     }
 }

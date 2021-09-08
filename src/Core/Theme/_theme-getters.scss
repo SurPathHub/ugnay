@@ -33,6 +33,7 @@
 }
 
 @function get-theme-key_($key, $type: default) {
+
     @if $type == dark {
         @return var(--sph-theme--#{$key}-dark);
     } @else if $type == light {
@@ -40,4 +41,5 @@
     } @else if $type == default {
         @return var(--sph-theme--#{$key});
     }
+
 }

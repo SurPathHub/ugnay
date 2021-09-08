@@ -24,33 +24,24 @@
 @use '../../Core/Typography';
 @use '../../Core/Theme';
 
-@mixin use($theme: ()) {
-
-    $_init-theme: (
-        'default': #c4c4c4,
-        'light': #fff,
-        'dark': #757575,
-        'ink': #000,
-        'elevation': #000
-    );
-    $_merged-theme: Theme.merge($theme, $_init-theme);
-
-    $_fill-light: Theme.get-theme-value('light', $_merged-theme);
-    $_fill: Theme.get-theme-value('default', $_merged-theme);
-    $_fill-dark: Theme.get-theme-value('dark', $_merged-theme);
-    $_ink: Theme.get-theme-value('ink', $_merged-theme);
-    $_elevation: Theme.get-theme-value('elevation', $_merged-theme);
+@mixin use(
+    $fill: primary,
+    $ink: on-primary,
+    $radius: medium-radius
+) {
 
     .sph-card {
+
+        @content;
+
         display: grid;
         grid-template-rows: auto 1fr;
-        max-height: 300px;
-        background: $_fill;
-        color: $_ink;
-        border-radius: 0.3rem;
+        background: var(--sph-card-fill, Theme.get-theme-key_($fill));
+        color: var(--sph-card-ink, Theme.get-theme-key_($ink));
+        border-radius: var(--sph-card-radius, Theme.get-theme-key_($radius));
         overflow: hidden;
 
-        @include Elevation.apply(3, $color: $_elevation);
+        @include Elevation.apply(3);
 
         .sph-card__img {
             height: 150px;
@@ -64,23 +55,21 @@
         }
 
         .sph-card__content {
-            padding: 0.5rem 0.8rem;
+            padding: 0.8rem 0.8rem 0.8rem 0.8rem;
             color: inherit;
 
             .sph-card__title {
-                font-size: 20px;
+                font-size: Typography.px-to-rem(20px);
             }
 
             .sph-card__description {
-                font-size: 14px;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
+                font-size: Typography.px-to-rem(14px);
             }
 
             .sph-card__actions {
                 display: flex;
+                position: relative;
+                top: 0.4rem;
                 justify-content: flex-end;
                 padding-top: 0.5rem;
 
@@ -89,7 +78,7 @@
                 }
 
                 .sph-button {
-                    padding: 0.2rem 0.5rem;
+                    padding: 0.4rem 0.6rem;
                 }
             }
         }

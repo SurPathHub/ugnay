@@ -24,24 +24,20 @@
 @use '../../Core/Typography';
 @use '../../Core/Theme';
 
-@mixin use($theme: ()) {
-
-    $_init-theme: (
-        'default': #232323,
-        'ink': #fff,
-        'elevation': #000
-    );
-    $_merged-theme: Theme.merge($theme, $_init-theme);
-
-    $_fill: Theme.get-theme-value('default', $_merged-theme);
-    $_ink: Theme.get-theme-value('ink', $_merged-theme);
-    $_elevation: Theme.get-theme-value('elevation', $_merged-theme);
+@mixin use(
+    $fill: #232323,
+    $ink: #fff,
+    $radius: small-radius
+) {
 
     $_success: #529e66;
     $_warning: #e2a339;
     $_error: #d0454c;
 
     .sph-snackbar {
+
+        @content;
+
         position: fixed;
         width: calc(100% - 40px);
         max-width: 420px;
@@ -50,13 +46,13 @@
         bottom: 70px;
         right: 20px;
         border-left: none;
-        border-radius: 0.3rem;
+        border-radius: var(--sph-snackbar-radius, Theme.get-theme-key_($radius));
         transition: all 0.1s ease;
-        background: $_fill;
-        color: $_ink;
+        background: var(--sph-snackbar-fill, $fill);
+        color: var(--sph-snackbar-ink, $ink);
         font-size: Typography.px-to-rem(14px);
 
-        @include Elevation.apply(5, $color: $_elevation);
+        @include Elevation.apply(5);
 
         @media (min-width: 540px) {
             bottom: 30px;
@@ -69,6 +65,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
 
             .sph-snackbar__label {
                 font-size: inherit;
@@ -76,7 +73,8 @@
             }
 
             .sph-snackbar__action {
-                padding: 0 0.3rem !important;
+                position: absolute;
+                right: 0;
             }
         }
 

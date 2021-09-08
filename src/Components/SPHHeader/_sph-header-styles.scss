@@ -24,32 +24,29 @@
 @use '../../Core/Typography';
 @use '../../Core/Theme';
 
-@mixin use($theme: ()) {
+@mixin use(
+    $fill: primary,
+    $ink: on-primary,
+    $radius: large-radius
+) {
 
-    $_init-theme: (
-        'default': #c4c4c4,
-        'light': #fff,
-        'dark': #757575,
-        'ink': #000,
-        'elevation': #000
-    );
-    $_merged-theme: Theme.merge($theme, $_init-theme);
-
-    $_fill-dark: Theme.get-theme-value('dark', $_merged-theme);
-    $_ink: Theme.get-theme-value('ink', $_merged-theme);
-    $_elevation: Theme.get-theme-value('elevation', $_merged-theme);
+    $_r: Theme.get-theme-key_($radius);
 
     .sph-header {
+
+        @content;
+
         width: 100%;
         height: 55px;
         position: fixed;
         top: 0;
-        background: $_fill-dark;
-        color: $_ink;
+        background: var(--sph-header-fill, Theme.get-theme-key_($fill));
+        color: var(--sph-header-ink, Theme.get-theme-key_($ink));
+        border-radius: var(--sph-header-radius, 0 0 $_r $_r);
 
         z-index: 100;
 
-        @include Elevation.apply(5, $color: $_elevation);
+        @include Elevation.apply(5);
 
         .sph-header__wrap {
             display: flex;

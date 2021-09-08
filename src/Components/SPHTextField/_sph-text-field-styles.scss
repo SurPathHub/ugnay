@@ -23,52 +23,44 @@
 @use '../../Core/Typography';
 @use '../../Core/Theme';
 
-@mixin use($theme: ()) {
-    $_init-theme: (
-        'default': #c4c4c4,
-        'light': #fff,
-        'dark': #757575,
-        'ink': #000,
-        'elevation': #000
-    );
-    $_merged-theme: Theme.merge($theme, $_init-theme);
-
-    $_fill-light: Theme.get-theme-value('light', $_merged-theme);
-    $_fill: Theme.get-theme-value('default', $_merged-theme);
-    $_fill-dark: Theme.get-theme-value('dark', $_merged-theme);
-    $_ink: Theme.get-theme-value('ink', $_merged-theme);
-    $_elevation: Theme.get-theme-value('elevation', $_merged-theme);
+@mixin use(
+    $fill: secondary,
+    $ink: on-secondary,
+    $radius: small-radius
+) {
 
     $_error: #d0454c;
 
     .sph-text-field {
+        @content;
+
         width: 100%;
         display: flex;
         flex-flow: column nowrap;
-        color: $_ink;
+        color: var(--sph-text-field-ink, Theme.get-theme-key_($ink));
 
         .sph-text-field__label {
-            color: inherit;
+            color: var(--sph-text-field-label-ink, #fff);
             font-size: Typography.px-to-rem(14px);
         }
 
         .sph-text-field__input {
             width: 100%;
             margin: 3px 0;
-            background: #c4c4c4;
-            border: 2px solid #c4c4c4;
+            background: var(--sph-text-field-fill, #c4c4c4);
+            border: 2px solid var(--sph-text-field-fill, #c4c4c4);
             padding: 0.5rem 0.7rem;
-            border-radius: 0.3rem;
+            border-radius: var(--sph-text-field-radius, Theme.get-theme-key_($radius));
             font-size: Typography.px-to-rem(14px);
             outline: none;
 
             &:focus-within {
-                border-color: $_fill-light;
+                border-color: var(--sph-text-field-on-focus, Theme.get-theme-key_($fill));
             }
         }
 
         .sph-text-field__helper {
-            color: inherit;
+            color: var(--sph-text-field-helper-ink, #fff);
             font-size: Typography.px-to-rem(12px);
         }
 

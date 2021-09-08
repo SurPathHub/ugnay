@@ -20,22 +20,24 @@
 // SOFTWARE.
 //
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    color: inherit;
-
-    &::before,
-    &::after {
+@mixin use() {
+    * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
         color: inherit;
 
-    }
-}
+        &::before,
+        &::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            color: inherit;
 
-a {
-    text-decoration: none;
+        }
+    }
+
+    a {
+        text-decoration: none;
+    }
 }

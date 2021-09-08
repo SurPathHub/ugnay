@@ -1,14 +1,25 @@
 @use '../../src/Core/Theme';
-@use '../../src/Components/SPHButton';
+@use '../../src/Components/SPHReset';
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@use '../../src/Components/SPHButton';
+@use '../../src/Components/SPHCard';
+@use '../../src/Components/SPHHeader';
+@use '../../src/Components/SPHNavbar';
+@use '../../src/Components/SPHSnackbar';
+@use '../../src/Components/SPHTextField';
+
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 @include Theme.config(
     $primary: #474747,
     $secondary: #7ed957
 );
 
-@include SPHButton.use($fill: secondary);
+@include SPHReset.use();
+
+* {
+    font-family: 'Inter';
+}
 
 body {
     width: 100%;
@@ -47,6 +58,57 @@ section {
         grid-template-columns: repeat(4, 1fr);
     }
 }
+
+//
+// Tweaking variables listed for documentation.
+//
+
+@include SPHButton.use($fill: secondary) {
+    // --sph-button-fill
+    // --sph-button-ink
+    // --sph-button-radius
+    // --sph-button-border
+
+    // --sph-button-active-fill
+    // --sph-button-active-border
+    // --sph-button-disabled-fill
+    // --sph-button-disabled-border
+};
+
+@include SPHCard.use() {
+    // --sph-card-fill
+    // --sph-card-ink
+    // --sph-card-radius
+};
+
+@include SPHHeader.use() {
+    // --sph-header-fill
+    // --sph-header-ink
+    // --sph-header-radius
+};
+
+@include SPHNavbar.use() {
+    // --sph-navbar-fill
+    // --sph-navbar-ink
+    // --sph-navbar-radius
+};
+
+@include SPHSnackbar.use() {
+    // --sph-snackbar-fill
+    // --sph-snackbar-ink
+    // --sph-snackbar-radius
+};
+
+@include SPHTextField.use() {
+    // --sph-text-field-fill
+    // --sph-text-field-ink
+    // --sph-text-field-radius
+
+    // --sph-text-field-on-focus
+    // --sph-text-field-label-ink
+    // --sph-text-field-helper-ink
+    // --sph-text-field-ink
+};
 
 #buttons {
     display: flex !important;
