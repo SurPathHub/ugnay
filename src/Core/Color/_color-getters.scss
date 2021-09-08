@@ -20,29 +20,50 @@
 // SOFTWARE.
 //
 
-@use 'sass:map';
-@use 'sass:list';
-@use 'sass:meta';
+@use 'sass:math';
+@use 'sass:color';
 
-$_valid-theme-keys: (
-    'default',
-    'light',
-    'dark',
-    'ink',
-    'elevation',
-    'active'
-);
+@use 'color-math';
 
-@function get-theme-value($theme-key, $theme-map) {
-    @if _validate-theme-key($theme-key) {
-        @return map.get($theme-map, $theme-key);
+@function get-split_($color) {
+
+    $_split-default: $color;
+
+    $_split-light: lighten($_split-default, 17.25%);
+    $_split-dark: darken($_split-default, 17%);
+
+    $_split-fill-map: (
+        'light': $_split-light,
+        'default': $_split-default,
+        'dark': $_split-dark
+    );
+
+    @return $_split-fill-map;
+
+}
+
+@function get-linear_($color) {
+    @if $color <= 0.4045 {
+        @return math.div($color, 12.92);
+    } @else {
+        @return color-math.pow(math.div($color + 0.055, 1.055), 2.4);
     }
 }
 
-@function _validate-theme-key($theme-key) {
-    @if not list.index($_valid-theme-keys, $theme-key) {
-        @error "Invalid theme key: #{$theme-key}! Please choose from the following valid keys: #{$_valid-theme-keys}.";
-    }
+@function get-luminance_($color) {
+    $r: get-linear_(math.div(color.red($color), 255));
+    $g: get-linear_(math.div(color.green($color), 255));
+    $b: get-linear_(math.div(color.blue($color), 255));
 
-    @return true;
+    @return (0.2126 * $r) + (0.7152 * $g) + (0.0722 * $b);
+}
+
+$_white-lumen: get-luminance_(#ffffff);
+
+@function get-ink_($fill) {
+    @if abs(get-luminance_($fill) - $_white-lumen) > 0.7 {
+        @return unquote('#fff');
+    } @else {
+        @return unquote('#000');
+    }
 }

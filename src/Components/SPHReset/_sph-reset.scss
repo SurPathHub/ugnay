@@ -20,8 +20,22 @@
 // SOFTWARE.
 //
 
-@use 'sass:math';
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: inherit;
 
-@function px-to-rem($px-value) {
-    @return math.div($px-value, 16px) * 1rem;
+    &::before,
+    &::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        color: inherit;
+
+    }
+}
+
+a {
+    text-decoration: none;
 }

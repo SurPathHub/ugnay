@@ -20,8 +20,3 @@
 // SOFTWARE.
 //
 
-@use 'sass:map';
-
-@function merge($module, $parent) {
-    @return map.merge($parent, $module);
-}

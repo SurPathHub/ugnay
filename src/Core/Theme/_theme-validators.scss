@@ -20,8 +20,27 @@
 // SOFTWARE.
 //
 
-@use 'sass:map';
+@use 'sass:list';
 
-@function pick($key, $theme) {
-    @return map.get($theme, $key);
+$_valid-theme-keys: (
+    'default',
+    'light',
+    'dark',
+    'ink',
+    'elevation',
+    'active'
+);
+
+@function is-theme-key_($theme-key) {
+    @if not list.index($_valid-theme-keys, $theme-key) {
+        @error "Invalid theme key: #{$theme-key}! Please choose from the following valid keys: #{$_valid-theme-keys}.";
+    }
+
+    @return true;
+}
+
+@function is-valid-prop_() {
+
+    //
+
 }

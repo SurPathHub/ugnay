@@ -1,53 +1,19 @@
 @use '../../src/Core/Theme';
 @use '../../src/Components/SPHButton';
-@use '../../src/Components/SPHCard';
-@use '../../src/Components/SPHHeader';
-@use '../../src/Components/SPHNavbar';
-@use '../../src/Components/SPHSnackbar';
-@use '../../src/Components/SPHTextField';
-@use '../../src/Components/SPHTooltip';
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-//
-// This $theme variable will serve as the :root equivalent, using this instead of regular CSS variables
-// gives us access to a more extensive color manipulation using built in sass functions/modules.
-//
-
-$theme: (
-    primary: (
-        'light': #6f6f6f,
-        'default': #474747,
-        'dark': #212121,
-        'ink': #fff,
-        'elevation': #000
-    ),
-    secondary: (
-        'light': #bdff9f,
-        'default': #7ed957,
-        'dark': #488630,
-        'ink': #000,
-        'elevation': #000
-    )
+@include Theme.config(
+    $primary: #474747,
+    $secondary: #7ed957
 );
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-
-    scroll-behavior: smooth;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
+@include SPHButton.use($fill: secondary);
 
 body {
     width: 100%;
     height: 100vh;
-    background: #181818;
+    background: var(--sph-theme--primary-dark);
 }
 
 section {
@@ -86,14 +52,3 @@ section {
     display: flex !important;
     flex-flow: row wrap !important;
 }
-
-// Components with active $theme parameter
-@include SPHButton.use(Theme.pick(secondary, $theme));
-@include SPHCard.use(Theme.pick(primary, $theme));
-@include SPHTextField.use(Theme.pick(primary, $theme));
-@include SPHHeader.use(Theme.pick(primary, $theme));
-@include SPHNavbar.use(Theme.pick(primary, $theme));
-
-// Components with dead $theme parameter
-@include SPHSnackbar.use();
-@include SPHTooltip.use();

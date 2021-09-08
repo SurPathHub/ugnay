@@ -24,57 +24,42 @@
 @use '../../Core/Typography';
 @use '../../Core/Theme';
 
-@mixin use($theme: ()) {
-
-    $_init-theme: (
-        'default': #c4c4c4,
-        'light': #fff,
-        'dark': #757575,
-        'ink': #000,
-        'elevation': #000
-    );
-    $_merged-theme: Theme.merge($theme, $_init-theme);
-
-    $_fill-light: Theme.get-theme-value('light', $_merged-theme);
-    $_fill: Theme.get-theme-value('default', $_merged-theme);
-    $_fill-dark: Theme.get-theme-value('dark', $_merged-theme);
-    $_ink: Theme.get-theme-value('ink', $_merged-theme);
-    $_elevation: Theme.get-theme-value('elevation', $_merged-theme);
+@mixin use(
+    $fill: secondary,
+    $ink: on-secondary,
+    $radius: small-radius,
+) {
 
     .sph-button {
         display: inline-flex;
         flex-flow: row nowrap;
         align-items: center;
-        padding: 0.2rem 0.5rem;
-        border-radius: 0.3rem;
+        padding: 0.5rem 0.7rem;
+        border-radius: Theme.get-theme-key_($radius);
         border: 1px solid rgba(0 0 0 / 0);
         background: rgba(0 0 0 / 0);
-        color: $_fill;
+        color: Theme.get-theme-key_($fill);
         cursor: pointer;
         user-select: none;
         transition: all 0.1s ease;
         outline: none;
 
-        @include Elevation.apply(0, $color: $_elevation);
-
-        &:hover {
-            background: rgba($_fill, 0);
-        }
+        @include Elevation.apply(0);
 
         &:focus {
-            background: rgba($_fill, 20%);
+            border-color: rgba(#c4c4c4, 50%);
         }
 
         &:active {
-            background: rgba($_fill, 30%);
+            color: Theme.get-theme-key_($fill, light);
         }
 
         &:disabled {
-            color: $_fill-dark;
+            color: Theme.get-theme-key_($fill, dark);
             cursor: default;
 
             &:hover {
-                background: rgba($_fill, 0);
+                background: rgba(0 0 0 / 0);
             }
         }
 
@@ -94,18 +79,22 @@
         }
 
         &.sph-button--outlined {
-            border-color: $_fill;
+            border-color: #535353;
+
+            &:focus {
+                border-color: Theme.get-theme-key_($fill);
+            }
 
             &:disabled {
-                border-color: $_fill-dark;
+                border-color: #363636;
                 cursor: default;
             }
         }
 
         &.sph-button--filled {
-            border-color: $_fill;
-            background-color: $_fill;
-            color: $_ink;
+            border-color: Theme.get-theme-key_($fill);
+            background-color: Theme.get-theme-key_($fill);
+            color: Theme.get-theme-key_($ink);
 
             &:hover,
             &:focus {
@@ -113,18 +102,18 @@
             }
 
             &:active {
-                background-color: $_fill-light;
-                border-color: $_fill-light;
+                background-color: Theme.get-theme-key_($fill, light);
+                border-color: Theme.get-theme-key_($fill, light);
                 @include Elevation.apply(7);
             }
 
             &:disabled {
-                background-color: $_fill-dark;
-                border-color: $_fill-dark;
+                background-color: Theme.get-theme-key_($fill, dark);
+                border-color: Theme.get-theme-key_($fill, dark);
                 cursor: default;
 
                 &:hover {
-                    background: $_fill-dark;
+                    background: Theme.get-theme-key_($fill, dark);
                     box-shadow: none;
                 }
             }

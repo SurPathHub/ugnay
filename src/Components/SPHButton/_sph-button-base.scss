@@ -20,8 +20,64 @@
 // SOFTWARE.
 //
 
-@use 'sass:math';
+@use 'sass:color';
 
-@function px-to-rem($px-value) {
-    @return math.div($px-value, 16px) * 1rem;
+@use '../../Core/Typography';
+@use '../../Core/Elevation';
+
+$fill: #c4c4c4;
+$ink: #000;
+$elevation: #000;
+
+.sph-button {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.3rem;
+    border: 1px solid rgba(0 0 0 / 0);
+    background: rgba(0 0 0 / 0);
+    color: $fill;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.1s ease;
+    outline: none;
+
+    @include Elevation.apply(0, $color: $elevation);
+
+    &:hover {
+        background: rgba($fill, 0);
+    }
+
+    &:focus {
+        background: rgba($fill, 20%);
+    }
+
+    &:active {
+        background: rgba($fill, 30%);
+    }
+
+    &:disabled {
+        color: darken($fill, 20%);
+        cursor: default;
+
+        &:hover {
+            background: rgba($fill, 0);
+        }
+    }
+
+    > * + * {
+        margin-left: 5px;
+    }
+
+    .sph-button__icon {
+        color: inherit;
+        font-size: Typography.px-to-rem(18px);
+    }
+
+    .sph-button__label {
+        color: inherit;
+        font-weight: 700;
+        font-size: Typography.px-to-rem(14px);
+    }
 }

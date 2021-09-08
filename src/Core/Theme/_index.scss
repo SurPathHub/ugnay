@@ -20,6 +20,5 @@
 // SOFTWARE.
 //
 
-@forward 'theme-parser';
-@forward 'theme-merger';
-@forward 'theme-picker';
+@forward 'theme-setters';
+@forward 'theme-getters' show get-theme-key_;
