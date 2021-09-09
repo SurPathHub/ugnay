@@ -20,9 +20,9 @@
 // SOFTWARE.
 //
 
-@use '../../Core/Elevation';
-@use '../../Core/Typography';
-@use '../../Core/Theme';
+@use '../../core/Elevation';
+@use '../../core/Typography';
+@use '../../core/Theme';
 
 @mixin use(
     $fill: primary,

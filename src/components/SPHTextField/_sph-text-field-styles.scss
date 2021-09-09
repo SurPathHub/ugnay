@@ -20,8 +20,8 @@
 // SOFTWARE.
 //
 
-@use '../../Core/Typography';
-@use '../../Core/Theme';
+@use '../../core/Typography';
+@use '../../core/Theme';
 
 @mixin use(
     $fill: secondary,

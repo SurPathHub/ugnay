@@ -1,6 +1,6 @@
 {
   "name": "ugnay",
-  "version": "0.1.0-unstable",
+  "version": "0.1.0-alpha",
   "description": "SurPath Hub's design system implementation for the web. Made with ❤, TypeScript, and SCSS",
   "main": "index.js",
   "scripts": {
