@@ -31,7 +31,7 @@ a {
 }
 
 * {
-  font-family: "Inter";
+  font-family: "Inter", sans-serif;
 }
 
 body {
@@ -73,6 +73,74 @@ section {
   .grid {
     grid-template-columns: repeat(4, 1fr);
   }
+}
+
+.sc-appbar {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: var(--sph-appbar-fill, var(--sph-theme--primary));
+  color: var(--sph-appbar-ink, var(--sph-theme--on-primary));
+  border-radius: var(--sph-appbar-radius, var(--sph-theme--large-radius) var(--sph-theme--large-radius) 0 0);
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+}
+@media (min-width: 570px) {
+  .sc-appbar {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    box-shadow: none;
+  }
+}
+.sc-appbar .sc-appbar__container {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0.7rem;
+}
+@media (min-width: 570px) {
+  .sc-appbar .sc-appbar__container > * + * {
+    margin-left: 1rem;
+  }
+}
+.sc-appbar .sc-appbar__container .sc-appbar__item {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 100%;
+}
+.sc-appbar .sc-appbar__container .sc-appbar__item a {
+  display: flex;
+  align-items: center;
+}
+.sc-appbar .sc-appbar__container .sc-appbar__item a .sc-appbar__item__icon {
+  color: var(--sph-appbar-icon-ink, inherit);
+  font-size: 1.125rem;
+}
+.sc-appbar .sc-appbar__container .sc-appbar__item a .sc-appbar__item__label {
+  display: none;
+  margin-left: 0.3rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  color: var(--sph-appbar-label-ink, inherit);
+}
+@media (min-width: 570px) {
+  .sc-appbar .sc-appbar__container .sc-appbar__item a .sc-appbar__item__label {
+    display: block;
+  }
+  .sc-appbar .sc-appbar__container .sc-appbar__item a .sc-appbar__item__label:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--sph-appbar-hover-ink, var(--sph-theme--secondary));
+  }
+}
+.sc-appbar .sc-appbar__container .sc-appbar__item.active {
+  color: var(--sph-appbar-active-ink, var(--sph-theme--secondary));
+}
+.sc-appbar .sc-appbar__container .sc-appbar__item.active .sc-appbar__item__label {
+  display: inline-block;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .sph-button {

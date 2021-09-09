@@ -20,6 +20,55 @@
 // SOFTWARE.
 //
 
-@mixin use($theme: ()) {
-    //
+@use '../../../Core/Theme';
+@use '../../../Core/Typography';
+
+@mixin use(
+    $fill: primary,
+    $ink: on-primary
+) {
+    .sc-appbar__item {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 100%;
+
+        a {
+            display: flex;
+            align-items: center;
+
+            .sc-appbar__item__icon {
+                color: var(--sph-appbar-icon-ink, inherit);
+                font-size: Typography.px-to-rem(18px);
+            }
+
+            .sc-appbar__item__label {
+                display: none;
+                margin-left: 0.3rem;
+                font-size: Typography.px-to-rem(14px);
+                white-space: nowrap;
+                color: var(--sph-appbar-label-ink, inherit);
+
+                @media (min-width: 570px) {
+                    display: block;
+
+                    &:hover {
+                        text-decoration: underline;
+                        text-decoration-color: var(--sph-appbar-hover-ink, Theme.get-theme-key_(secondary));
+                    }
+                }
+            }
+        }
+
+        &.active {
+            color: var(--sph-appbar-active-ink, Theme.get-theme-key_(secondary));
+
+            .sc-appbar__item__label {
+                display: inline-block;
+                font-weight: 700;
+                white-space: nowrap;
+            }
+        }
+    }
 }

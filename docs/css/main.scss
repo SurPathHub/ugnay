@@ -1,6 +1,7 @@
 @use '../../src/Core/Theme';
 @use '../../src/Components/SPHReset';
 
+@use '../../src/Components/SPHAppbar';
 @use '../../src/Components/SPHButton';
 @use '../../src/Components/SPHCard';
 @use '../../src/Components/SPHHeader';
@@ -18,7 +19,7 @@
 @include SPHReset.use();
 
 * {
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif;
 }
 
 body {
@@ -62,6 +63,17 @@ section {
 //
 // Tweaking variables listed for documentation.
 //
+
+@include SPHAppbar.use() {
+    // --sph-appbar-fill
+    // --sph-appbar-ink
+    // --sph-appbar-radius
+
+    // --sph-appbar-icon-ink
+    // --sph-appbar-label-ink
+    // --sph-appbar-hover-ink
+    // --sph-appbar-active-ink
+};
 
 @include SPHButton.use($fill: secondary) {
     // --sph-button-fill

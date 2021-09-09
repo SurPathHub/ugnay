@@ -20,6 +20,52 @@
 // SOFTWARE.
 //
 
-@mixin use($theme: ()) {
-    //
+@use '../../Core/Theme';
+@use '../../Core/Elevation';
+
+@use 'SPHAppBarItem';
+
+@mixin use(
+    $fill: primary,
+    $ink: on-primary,
+    $radius: large-radius
+) {
+
+    $_r: Theme.get-theme-key_($radius);
+
+    .sc-appbar {
+
+        @content;
+
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        background: var(--sph-appbar-fill, Theme.get-theme-key_($fill));
+        color: var(--sph-appbar-ink, Theme.get-theme-key_($ink));
+        border-radius: var(--sph-appbar-radius, $_r $_r 0 0);
+
+        @include Elevation.apply(5);
+
+        @media (min-width: 570px) {
+            position: relative;
+            bottom: auto;
+            right: auto;
+            box-shadow: none;
+        }
+
+        .sc-appbar__container {
+            display: flex;
+            flex-flow: row nowrap;
+            padding: 0.7rem;
+
+            @media (min-width: 570px) {
+                & > * + * {
+                    margin-left: 1rem;
+                }
+            }
+
+            @include SPHAppBarItem.use($fill, $ink);
+        }
+    }
 }
