@@ -36,27 +36,34 @@ npm install @surpath/ugnay
 ```
 3. Define your color theme using the `$theme` variable.
 ```scss
-$theme: (
-    primary: (
-        'light': #9c4dcc,
-        'default': #6a1b9a,
-        'dark': #38006b,
-        'ink': #fff,
-        'elevation': #000
-    ),
-    secondary: (
-        'light': #ffba55,
-        'default': #ffa300,
-        'dark': #935f00,
-        'ink': #000,
-        'elevation': #000
-    )
+@include Theme.config(
+    $primary: #474747
+    $secondary: #7ed957
 );
 ```
-4. Inject your theme into the components' `use()` mixin using the `Theme.pick()` function.
+4. Call the component styles using the `use()` mixin.
 ```scss
-@include SPHButton.use(Theme.pick(secondary, $theme));
-@include SPHTextField.use(Theme.pick(primary, $theme));
+@include SPHComponent.use();
+```
+4A. You can also override the component's overall theme scope using the `use()` parameters like `$fill`, `$ink`, and `$radius`.
+```scss
+@include SPHComponent.use(
+    $fill: secondary,
+    $ink: on-primary,
+    $radius: medium-radius
+);
+```
+4B. You can also fine-tune it further by using the CSS custom properties.
+```scss
+@include SPHComponent.use($fill: secondary) {
+
+    /// AVAILABLE PROPERTIES INCLUDE, BUT NOT LIMITED TO:
+    // --sph-[component_name]-active-fill
+    // --sph-[component_name]-active-border
+    // --sph-[component_name]-disabled-fill
+    // --sph-[component_name]-disabled-border
+    
+};
 ```
 5. DONE! Happy styling!
 
