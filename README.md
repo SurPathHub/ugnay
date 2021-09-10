@@ -26,13 +26,13 @@
 **_NOTE: NOT YET RELEASED ON NPM!! You can only use it using this repository as of now!_**
 1. Install the modules using npm:
 ```shell
-npm install @surpath/ugnay
+npm install @surpathhub/ugnay
 ```
 2. Import all the components that you want to use in your project.
 ```scss
-@use '~@surpath/ugnay/Core/Theme';
-@use '~@surpath/ugnay/Components/SPHButton';
-@use '~@surpath/ugnay/Components/SPHTextField';
+@use '~@surpathhub/ugnay/Core/Theme';
+@use '~@surpathhub/ugnay/Components/SPHButton';
+@use '~@surpathhub/ugnay/Components/SPHTextField';
 ```
 3. Define your color theme using the `$theme` variable.
 ```scss
@@ -70,17 +70,17 @@ npm install @surpath/ugnay
 ### TypeScript Usage
 1. Import the typescript module of the component you want to use.
 ```typescript
-import SPHNavbar from "@surpath/ugnay/Components/SPHNavbar";
+import SPHNavbar from "@surpathhub/ugnay/Components/SPHNavbar";
 ```
 2. Make a new instance of that component.
 ```typescript
-import SPHNavbar from "@surpath/ugnay/Components/SPHNavbar";
+import SPHNavbar from "@surpathhub/ugnay/Components/SPHNavbar";
 
 const myNavbar = new SPHNavbar();
 ```
 3. Attach `.use()` at the end of the instance variable.
 ```typescript
-import SPHNavbar from "@surpath/ugnay/Components/SPHNavbar";
+import SPHNavbar from "@surpathhub/ugnay/Components/SPHNavbar";
 
 const myNavbar = new SPHNavbar();
 
