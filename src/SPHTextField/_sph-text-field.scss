@@ -1,0 +1,91 @@
+//
+// Copyright (c) 2021 SurPath Hub
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+
+@use '../SPHCore/Typography';
+@use '../SPHCore/Theme';
+@use '../SPHCore/Elevation';
+
+$text-field-fill: #c4c4c4;
+$text-field-ink: #000000;
+$text-field-radius: 0.3rem !default;
+
+$text-field-focus-border: var(--sph-theme--secondary) !default;
+$text-field-label-ink: #ffffff !default;
+$text-field-helper-ink: #ffffff !default;
+
+$text-field-elevation-color: #000000 !default;
+
+@mixin use() {
+    
+    $_error: #d0454c;
+    
+    .sph-text-field {
+        width: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+        color: Theme.key-create('text-field-ink', $text-field-ink);
+        
+        .sph-text-field__label {
+            color: Theme.key-create('text-field-label-ink', $text-field-label-ink);
+            font-size: Typography.px-to-rem(14px);
+        }
+        
+        .sph-text-field__input {
+            width: 100%;
+            margin: 3px 0;
+            background: Theme.key-create('text-field-fill', $text-field-fill);
+            border: 2px solid Theme.key-create('text-field-fill', $text-field-fill);
+            padding: 0.5rem 0.7rem;
+            border-radius: Theme.key-create('text-field-radius', $text-field-radius);
+            font-size: Typography.px-to-rem(14px);
+            outline: none;
+            transition: all 0.1s ease;
+            
+            &:focus-within {
+                border-color: Theme.key-create('text-field-focus-border', $text-field-focus-border);
+            }
+        }
+        
+        .sph-text-field__helper {
+            color: Theme.key-create('text-field-helper-ink', $text-field-helper-ink);
+            font-size: Typography.px-to-rem(12px);
+        }
+        
+        &.error {
+            color: $_error;
+            
+            .sph-text-field__input {
+                border-color: $_error;
+            }
+        }
+        
+        &.sph-text-field--elevated {
+            .sph-text-field__input {
+                @include Elevation.apply(2, $text-field-elevation-color);
+                
+                &:focus-within {
+                    @include Elevation.apply(4, $text-field-elevation-color);
+                }
+            }
+        }
+    }
+}

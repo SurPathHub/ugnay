@@ -1,0 +1,80 @@
+//
+// Copyright (c) 2021 SurPath Hub
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+
+@use '../SPHCore/Theme';
+@use '../SPHCore/Elevation';
+
+@use 'SPHAppBarItem';
+
+$appbar-fill: var(--sph-theme--primary) !default;
+$appbar-ink: var(--sph-theme--on-primary) !default;
+$appbar-active-ink: var(--sph-theme--secondary) !default;
+$appbar-radius: 0 !default;
+
+$appbar-icon-size: 20px !default;
+$appbar-label-size: 16px !default;
+$appbar-elevation-color: #000 !default;
+
+@mixin use() {
+    .sc-appbar {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: 100;
+        background: Theme.key-create('appbar-fill', $appbar-fill);
+        color: Theme.key-create('appbar-ink', $appbar-ink);
+        border-radius: Theme.key-create('appbar-radius', $appbar-radius);
+
+        @include Elevation.apply(5, $appbar-elevation-color);
+
+        @media (min-width: 570px) {
+            background: rgba(0 0 0 / 0);
+            position: relative;
+            bottom: auto;
+            right: auto;
+            box-shadow: none;
+            border-radius: 0;
+        }
+
+        .sc-appbar__container {
+            width: 100%;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-around;
+            padding: 1rem 0.7rem;
+
+            @media (min-width: 570px) {
+                & > * + * {
+                    margin-left: 1rem;
+                }
+            }
+
+            @include SPHAppBarItem.use(
+                $appbar-ink,
+                $appbar-active-ink,
+                $appbar-icon-size,
+                $appbar-label-size
+            );
+        }
+    }
+}

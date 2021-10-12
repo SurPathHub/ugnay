@@ -1,0 +1,72 @@
+@use '../../src/SPHCore/Theme';
+@use '../../src/SPHCore/Elevation';
+
+@use '../../src/SPHReset';
+
+@use '../../src/SPHAppbar';
+@use '../../src/SPHButton';
+@use '../../src/SPHCard';
+@use '../../src/SPHHeader';
+@use '../../src/SPHNavbar';
+@use '../../src/SPHTextField';
+
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+    @include Theme.config(
+        $primary: #474747,
+        $secondary: #7ed957
+    );
+}
+
+@include SPHReset.use();
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: #181818;
+}
+
+section {
+    height: 100%;
+    display: grid;
+    place-items: center;
+    grid-gap: 10px;
+    padding: 1rem 0;
+}
+
+.content-wrap {
+    width: calc(100% - 20px);
+    max-width: 977px;
+    margin: 0 auto;
+    padding: 67px 0 75px 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+
+    @media (min-width: 420px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 620px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@include SPHAppbar.use();
+@include SPHButton.use();
+@include SPHCard.use();
+@include SPHHeader.use();
+@include SPHTextField.use();
+@include SPHNavbar.use();
+
+#buttons {
+    display: flex !important;
+    flex-flow: row wrap !important;
+}

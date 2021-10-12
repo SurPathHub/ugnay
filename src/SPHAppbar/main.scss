@@ -1,4 +1,4 @@
-//
+/*
 // Copyright (c) 2021 SurPath Hub
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -18,38 +18,8 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
-//
+*/
 
-@use '../Color/color-getters' as Color;
+@use 'sph-appbar' as c;
 
-$primary: #474747 !default;
-$secondary: #7ed957 !default;
-
-$prefix: 'sph' !default;
-
-@mixin config(
-    $primary,
-    $secondary
-) {
-    $_primary-map: Color.get-split($primary);
-    $_secondary-map: Color.get-split($secondary);
-    
-    @each $property, $value in $_primary-map {
-        @if $property == 'default' {
-            --#{$prefix}-theme--primary: #{$value};
-        } @else {
-            --#{$prefix}-theme--primary-#{$property}: #{$value};
-        }
-    }
-    
-    @each $property, $value in $_secondary-map {
-        @if $property == 'default' {
-            --#{$prefix}-theme--secondary: #{$value};
-        } @else {
-            --#{$prefix}-theme--secondary-#{$property}: #{$value};
-        }
-    }
-    
-    --#{$prefix}-theme--on-primary: #{Color.get-ink($primary)};
-    --#{$prefix}-theme--on-secondary: #{Color.get-ink($secondary)};
-}
+@include c.use();

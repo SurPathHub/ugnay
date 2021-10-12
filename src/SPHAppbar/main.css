@@ -1,0 +1,94 @@
+/*
+// Copyright (c) 2021 SurPath Hub
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+*/
+.sc-appbar {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--sph-appbar-fill, var(--sph-theme--primary));
+  color: var(--sph-appbar-ink, var(--sph-theme--on-primary));
+  border-radius: var(--sph-appbar-radius, 0);
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+}
+@media (min-width: 570px) {
+  .sc-appbar {
+    background: rgba(0, 0, 0, 0);
+    position: relative;
+    bottom: auto;
+    right: auto;
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
+.sc-appbar .sc-appbar__container {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  padding: 1rem 0.7rem;
+}
+@media (min-width: 570px) {
+  .sc-appbar .sc-appbar__container > * + * {
+    margin-left: 1rem;
+  }
+}
+.sc-appbar .sc-appbar__container .sc-appbar__item {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.sc-appbar .sc-appbar__container .sc-appbar__item a {
+  display: flex;
+  align-items: center;
+}
+.sc-appbar .sc-appbar__container .sc-appbar__item a .sc-appbar__item__icon {
+  color: var(--sph-appbar-item-icon-ink, inherit);
+  font-size: var(--sph-appbar-item-icon-size, 1.25rem);
+}
+.sc-appbar .sc-appbar__container .sc-appbar__item a .sc-appbar__item__label {
+  display: none;
+  margin-left: 0.3rem;
+  font-size: var(--sph-appbar-item-label-size, 1rem);
+  white-space: nowrap;
+  color: var(--sph-appbar-item-label-ink, inherit);
+}
+@media (min-width: 570px) {
+  .sc-appbar .sc-appbar__container .sc-appbar__item a .sc-appbar__item__label {
+    display: block;
+  }
+  .sc-appbar .sc-appbar__container .sc-appbar__item a .sc-appbar__item__label:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--sph-appbar-item-hover-ink, var(--sph-theme--secondary));
+  }
+}
+.sc-appbar .sc-appbar__container .sc-appbar__item.active {
+  color: var(--sph-appbar-item-active-ink, var(--sph-theme--secondary));
+}
+.sc-appbar .sc-appbar__container .sc-appbar__item.active .sc-appbar__item__label {
+  display: inline-block;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/*# sourceMappingURL=main.css.map */

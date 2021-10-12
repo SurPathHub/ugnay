@@ -1,0 +1,96 @@
+//
+// Copyright (c) 2021 SurPath Hub
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+
+@use '../SPHCore/Color';
+@use '../SPHCore/Typography';
+@use '../SPHCore/Theme';
+@use '../SPHCore/Elevation';
+
+$card-fill: var(--sph-theme--primary) !default;
+$card-ink: var(--sph-theme--on-primary) !default;
+$card-radius: 0.5rem !default;
+
+$card-elevation-color: #000000 !default;
+
+$card-title-size: 20px !default;
+$card-description-size: 14px !default;
+
+@mixin use() {
+    .sph-card {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        background: Theme.key-create('card-fill', $card-fill);
+        color: Theme.key-create('card-ink', $card-ink);
+        border-radius: Theme.key-create('card-radius', $card-radius);
+        overflow: hidden;
+        
+        @include Elevation.apply(2, $card-elevation-color);
+        
+        .sph-card__media {
+            height: 150px;
+            overflow: hidden;
+            
+            img,
+            video,
+            & > * {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+        }
+        
+        .sph-card__content {
+            padding: 0.8rem 0.8rem 0 0.8rem;
+            color: inherit;
+            
+            &:last-child {
+                padding: 0.8rem;
+            }
+            
+            .sph-card__title {
+                font-size: Theme.key-create('card-title-size', Typography.px-to-rem($card-title-size));
+                line-height: 2rem;
+            }
+            
+            .sph-card__description {
+                font-size: Theme.key-create('card-description-size', Typography.px-to-rem($card-description-size));
+                line-height: 1.115rem;
+            }
+        }
+    
+        .sph-card__actions {
+            display: flex;
+            position: relative;
+            justify-content: flex-end;
+            padding: 0.8rem 0.6rem 0.6rem 0.8rem;
+        
+            & > * + * {
+                margin-left: 0.5rem;
+            }
+        
+            .sph-card__action {
+                padding: 0.4rem 0.6rem !important;
+            }
+        }
+    }
+    
+}

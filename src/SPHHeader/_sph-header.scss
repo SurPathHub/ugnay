@@ -1,0 +1,84 @@
+//
+// Copyright (c) 2021 SurPath Hub
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+
+@use '../SPHCore/Elevation';
+@use '../SPHCore/Typography';
+@use '../SPHCore/Theme';
+
+$header-fill: var(--sph-theme--primary) !default;
+$header-ink: var(--sph-theme--on-primary) !default;
+$header-radius: 0 !default;
+
+$header-size: 22px !default;
+$header-logo-width: 50px !default;
+$header-logo-height: 50px !default;
+$header-elevation-color: #000 !default;
+
+@mixin use() {
+
+    .sph-header {
+        width: 100%;
+        height: Theme.key-create('header-logo-height', $header-logo-height);
+        position: fixed;
+        top: 0;
+        background: Theme.key-create('header-fill', $header-fill);
+        color: Theme.key-create('header-ink', $header-ink);
+        border-radius: Theme.key-create('header-radius', $header-radius);
+        z-index: 100;
+
+        @include Elevation.apply(5, $header-elevation-color);
+
+        .sph-header__wrap {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+
+            max-width: 1270px;
+
+            width: calc(100% - 20px);
+            margin: 0 auto;
+
+            > a {
+                flex-basis: max-content;
+            }
+
+            .sph-header__mast {
+                display: grid;
+                grid-template-columns: Theme.key-create('header-logo-width', $header-logo-width) auto;
+                align-items: center;
+
+                .sph-header__logo {
+                    width: Theme.key-create('header-logo-width', $header-logo-width);
+                    height: Theme.key-create('header-logo-height', $header-logo-height);
+                }
+                .sph-header__text {
+                    font-size: Theme.key-create('header-size', Typography.px-to-rem($header-size));
+                }
+            }
+
+            .sph-header__actions {
+                display: grid;
+                place-items: center;
+            }
+        }
+    }
+}

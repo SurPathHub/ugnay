@@ -1,0 +1,69 @@
+/*
+// Copyright (c) 2021 SurPath Hub
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+*/
+.sph-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background: var(--sph-card-fill, var(--sph-theme--primary));
+  color: var(--sph-card-ink, var(--sph-theme--on-primary));
+  border-radius: var(--sph-card-radius, 0.5rem);
+  overflow: hidden;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+.sph-card .sph-card__media {
+  height: 150px;
+  overflow: hidden;
+}
+.sph-card .sph-card__media img,
+.sph-card .sph-card__media video, .sph-card .sph-card__media > * {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.sph-card .sph-card__content {
+  padding: 0.8rem 0.8rem 0 0.8rem;
+  color: inherit;
+}
+.sph-card .sph-card__content:last-child {
+  padding: 0.8rem;
+}
+.sph-card .sph-card__content .sph-card__title {
+  font-size: var(--sph-card-title-size, 1.25rem);
+  line-height: 2rem;
+}
+.sph-card .sph-card__content .sph-card__description {
+  font-size: var(--sph-card-description-size, 0.875rem);
+  line-height: 1.115rem;
+}
+.sph-card .sph-card__actions {
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  padding: 0.8rem 0.6rem 0.6rem 0.8rem;
+}
+.sph-card .sph-card__actions > * + * {
+  margin-left: 0.5rem;
+}
+.sph-card .sph-card__actions .sph-card__action {
+  padding: 0.4rem 0.6rem !important;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -20,36 +20,4 @@
 // SOFTWARE.
 //
 
-@use '../Color/color-getters' as Color;
-
-$primary: #474747 !default;
-$secondary: #7ed957 !default;
-
-$prefix: 'sph' !default;
-
-@mixin config(
-    $primary,
-    $secondary
-) {
-    $_primary-map: Color.get-split($primary);
-    $_secondary-map: Color.get-split($secondary);
-    
-    @each $property, $value in $_primary-map {
-        @if $property == 'default' {
-            --#{$prefix}-theme--primary: #{$value};
-        } @else {
-            --#{$prefix}-theme--primary-#{$property}: #{$value};
-        }
-    }
-    
-    @each $property, $value in $_secondary-map {
-        @if $property == 'default' {
-            --#{$prefix}-theme--secondary: #{$value};
-        } @else {
-            --#{$prefix}-theme--secondary-#{$property}: #{$value};
-        }
-    }
-    
-    --#{$prefix}-theme--on-primary: #{Color.get-ink($primary)};
-    --#{$prefix}-theme--on-secondary: #{Color.get-ink($secondary)};
-}
+@forward 'sph-nav-item';

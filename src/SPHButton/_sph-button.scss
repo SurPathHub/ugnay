@@ -27,20 +27,20 @@
 @use '../SPHCore/Theme';
 @use '../SPHCore/Elevation';
 
-$button-fill: #7ed957 !default;
-$button-active-fill: Color.set-tint($button-fill) !default;
-$button-disabled-fill: Color.set-shade($button-fill) !default;
+$button-fill: var(--sph-theme--secondary) !default;
+$button-active-fill: var(--sph-theme--secondary-light) !default;
+$button-disabled-fill: var(--sph-theme--secondary-dark) !default;
 
 $button-size: 14px !default;
 $button-icon-size: 18px !default;
 
-$button-ink: Color.get-ink($button-fill) !default;
+$button-ink: var(--sph-theme--on-secondary) !default;
 $button-icon-ink: inherit !default;
 
 $button-label-weight: 700 !default;
 
 $button-radius: 0.3rem !default;
-$button-elevation-color: #000 !default;
+$button-elevation-color: #000000 !default;
 
 @mixin use($types: 'all') {
     
@@ -54,7 +54,7 @@ $button-elevation-color: #000 !default;
             @include _sph-button-filled;
         }
         
-    };
+    }
     
 }
 

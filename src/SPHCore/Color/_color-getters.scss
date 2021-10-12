@@ -25,7 +25,7 @@
 
 @use 'color-math';
 
-@function get-split_($color) {
+@function get-split($color) {
 
     $_split-default: $color;
 

@@ -1,0 +1,107 @@
+//
+// Copyright (c) 2021 SurPath Hub
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+
+@use '../SPHCore/Elevation';
+@use '../SPHCore/Typography';
+@use '../SPHCore/Theme';
+
+@use 'SPHNavItem';
+
+$navbar-fill: var(--sph-theme--primary) !default;
+$navbar-ink: var(--sph-theme--on-primary) !default;
+$navbar-radius: 0 !default;
+$navbar-size: 16px !default;
+
+$navbar-trigger-ink: #fff !default;
+$navbar-elevation-color: #000 !default;
+
+$navbar-item-hover-fill: var(--sph-theme--primary-light) !default;
+
+@mixin use() {
+    .sph-js-navbar__trigger {
+        width: 100%;
+        display: grid;
+        place-items: center;
+        padding: 0 0.7rem;
+        margin-bottom: 3px;
+
+        border: none;
+        color: Theme.key-create('navbar-trigger-ink', $navbar-trigger-ink);
+        background: rgba(0 0 0 / 0);
+
+        > * {
+            font-size: 24px;
+        }
+
+        @media (min-width: 570px) {
+            display: none;
+        }
+    }
+
+    .sph-navbar {
+        width: 270px;
+        height: 100%;
+        display: none;
+        position: fixed;
+        right: 0;
+        top: 55px;
+        padding: 1.2rem 1.7rem 1.2rem 1.2rem;
+        background: Theme.key-create('navbar-fill', $navbar-fill);
+        color: Theme.key-create('navbar-ink', $navbar-ink);
+        border-radius: Theme.key-create('navbar-radius', $navbar-radius);
+        transition: all 0.1s ease;
+
+        z-index: 90;
+
+        @include Elevation.apply(5, $navbar-elevation-color);
+
+        &.visible {
+            display: block;
+            transition: all 0.1s ease;
+        }
+
+        @media (min-width: 570px) {
+            display: flex;
+            align-items: center;
+            position: relative;
+            right: 0;
+            top: 0;
+            padding: 0;
+            background: rgba(0 0 0 / 0);
+            @include Elevation.apply(0, $navbar-elevation-color);
+        }
+
+        .sph-navbar__container {
+            @media (min-width: 570px) {
+                width: 100%;
+                height: auto;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: flex-end;
+                padding: 0;
+            }
+        }
+
+        @include SPHNavItem.use($navbar-ink, $navbar-item-hover-fill, $navbar-size);
+
+    }
+}
