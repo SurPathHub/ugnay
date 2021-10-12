@@ -20,27 +20,6 @@
 // SOFTWARE.
 //
 
-@use 'sass:list';
-
-$_valid-theme-keys: (
-    'default',
-    'light',
-    'dark',
-    'ink',
-    'elevation',
-    'active'
-);
-
-@function is-theme-key_($theme-key) {
-    @if not list.index($_valid-theme-keys, $theme-key) {
-        @error "Invalid theme key: #{$theme-key}! Please choose from the following valid keys: #{$_valid-theme-keys}.";
-    }
-
-    @return true;
-}
-
-@function is-valid-prop_() {
-
-    //
-
-}
+@forward 'theme-setters';
+@forward 'theme-getters';
+@forward 'theme-keys' as key-*;

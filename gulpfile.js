@@ -22,43 +22,25 @@
  *
  */
 
-const path = require("path");
+const {src, dest, watch, series} = require('gulp');
+const sass = require('gulp-sass')(require('sass'));
 
-module.exports = {
-    entry: './docs/js/main.ts',
-    module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/,
-            },
-            /*{
-                test: /\.s[ac]ss$/i,
-                use: [
-                    "style-loader",
-                    {
-                        loader: "css-loader",
-                        options: {
-                            sourceMap: true
-                        }
-                    },
-                    {
-                        loader: "sass-loader",
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
-                ],
-            },*/
-        ],
-    },
-    mode: "production",
-    resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
-    },
-    output: {
-        filename: 'main.js',
-        path: path.resolve(__dirname, 'docs/js'),
-    },
-};
+function sassTaskDev() {
+    return src(['src/**/*.scss', '!src/**/*.test.scss'], {sourcemaps: true})
+        .pipe(sass().on('error', sass.logError))
+        .pipe(dest('./src', {sourcemaps: '.'}));
+}
+
+function watchTask() {
+    watch(['src/**/*.scss', '!src/**/*.test.scss'], sassTaskDev());
+    // watch(['test/**/*.scss'], sassTaskTest());
+    // watch(['src/main.scss'], sassTaskProd());
+    // watch('test/scripts/**/*.ts', tsTask());
+}
+
+exports.default = series(
+    sassTaskDev,
+    //sassTaskTest,
+    // sassTaskProd,
+    // watchTask
+);

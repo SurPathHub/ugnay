@@ -3,7 +3,7 @@
 
 ## Component documentation lookup
 [1. SPHAppbar](SPHAppbar)<br>
-[2. SPHButton](SPHButton)<br>
+[2. SPHButton](../SPHButton)<br>
 [3. SPHCard](SPHCard)<br>
 [4. SPHHeader](SPHHeader)<br>
 [5. SPHNavbar](SPHNavbar)<br>

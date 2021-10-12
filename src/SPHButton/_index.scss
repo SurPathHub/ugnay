@@ -20,26 +20,4 @@
 // SOFTWARE.
 //
 
-@use 'sass:map';
-@use 'sass:list';
-@use 'sass:meta';
-
-@use 'theme-validators' as validator;
-
-@function get-theme-value($theme-key, $theme-map) {
-    @if validator.is-theme-key_($theme-key) {
-        @return map.get($theme-map, $theme-key);
-    }
-}
-
-@function get-theme-key_($key, $type: default) {
-
-    @if $type == dark {
-        @return var(--sph-theme--#{$key}-dark);
-    } @else if $type == light {
-        @return var(--sph-theme--#{$key}-light);
-    } @else if $type == default {
-        @return var(--sph-theme--#{$key});
-    }
-
-}
+@forward 'sph-button';

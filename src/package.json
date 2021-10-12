@@ -2,7 +2,7 @@
   "name": "@surpathhub/ugnay",
   "version": "0.1.0-alpha",
   "description": "SurPath Hub's design system implementation for the web. Made with ❤, TypeScript, and SCSS",
-  "main": "index.js",
+  "main": "../entry/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

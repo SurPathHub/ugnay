@@ -1,0 +1,166 @@
+//
+// Copyright (c) 2021 SurPath Hub
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+
+@use 'sass:list';
+
+@use '../SPHCore/Color';
+@use '../SPHCore/Typography';
+@use '../SPHCore/Theme';
+@use '../SPHCore/Elevation';
+
+$button-fill: #7ed957 !default;
+$button-active-fill: Color.set-tint($button-fill) !default;
+$button-disabled-fill: Color.set-shade($button-fill) !default;
+
+$button-size: 14px !default;
+$button-icon-size: 18px !default;
+
+$button-ink: Color.get-ink($button-fill) !default;
+$button-icon-ink: inherit !default;
+
+$button-label-weight: 700 !default;
+
+$button-radius: 0.3rem !default;
+$button-elevation-color: #000 !default;
+
+@mixin use($types: 'all') {
+    
+    @include sph-button-base {
+        
+        @if list.index($types, 'outlined') or list.index($types, 'all') {
+            @include _sph-button-outlined;
+        }
+        
+        @if list.index($types, 'filled') or list.index($types, 'all') {
+            @include _sph-button-filled;
+        }
+        
+    };
+    
+}
+
+@mixin sph-button-base {
+    .sph-button {
+        display: inline-flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        padding: 0.5rem 0.7rem;
+        border-radius: Theme.key-create('button-radius', $button-radius);
+        border: 1px solid rgba(0 0 0 / 0);
+        background: rgba(0 0 0 / 0);
+        color: Theme.key-create('button-fill', $button-fill);
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.1s ease;
+        outline: none;
+        
+        @include Elevation.apply(0, $button-elevation-color);
+        
+        &:focus {
+            border-color: rgba(#c4c4c4, 50%);
+        }
+        
+        &:active {
+            color: Theme.key-create('button-active-fill', $button-active-fill);
+        }
+        
+        &:disabled,
+        &--disabled {
+            color: Theme.key-create('button-disabled-fill', $button-disabled-fill);
+            cursor: default;
+            
+            &:hover {
+                background: rgba(0 0 0 / 0);
+            }
+        }
+        
+        > * + * {
+            margin-left: 5px;
+        }
+        
+        .sph-button__icon {
+            color: Theme.key-create('button-icon-ink', $button-icon-ink);
+            font-size: Theme.key-create('button-icon-size', Typography.px-to-rem($button-icon-size));
+        }
+        
+        .sph-button__label {
+            color: Theme.key-create('button-ink', inherit);
+            font-weight: Theme.key-create('button-label-weight', $button-label-weight);
+            font-size: Theme.key-create('button-size', Typography.px-to-rem($button-size));
+        }
+        
+        @content;
+        
+    }
+}
+
+@mixin _sph-button-outlined {
+    &.sph-button--outlined {
+        border-color: #535353;
+        
+        &:hover,
+        &:focus {
+            border-color: Theme.key-create('button-fill', $button-fill);
+        }
+        
+        &:active {
+            border-color: Theme.key-create('button-active-fill', $button-active-fill);
+        }
+        
+        &:disabled,
+        &--disabled {
+            border-color: #363636;
+            cursor: default;
+        }
+    }
+}
+
+@mixin _sph-button-filled {
+    &.sph-button--filled {
+        border-color: Theme.key-create('button-fill', $button-fill);
+        background-color: Theme.key-create('button-fill', $button-fill);
+        color: Theme.key-create('button-ink', $button-ink);
+        
+        &:hover,
+        &:focus {
+            @include Elevation.apply(2, $button-elevation-color);
+        }
+        
+        &:active {
+            background-color: Theme.key-create('button-active-fill', $button-active-fill);
+            border-color: Theme.key-create('button-active-fill', $button-active-fill);
+            @include Elevation.apply(4, $button-elevation-color);
+        }
+        
+        &:disabled,
+        &--disabled {
+            background-color: Theme.key-create('button-disabled-fill', $button-disabled-fill);
+            border-color: Theme.key-create('button-disabled-fill', $button-disabled-fill);
+            cursor: default;
+            
+            &:hover {
+                background: Theme.key-create('button-disabled-fill', $button-disabled-fill);
+                box-shadow: none;
+            }
+        }
+    }
+}

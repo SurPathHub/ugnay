@@ -1,20 +1,22 @@
-@use '../../src/core/Theme';
+@use '../../src/SPHCore/Theme';
+@use '../../src/SPHCore/Elevation';
+
 @use '../../src/components/SPHReset';
 
-@use '../../src/components/SPHAppbar';
-@use '../../src/components/SPHButton';
-@use '../../src/components/SPHCard';
-@use '../../src/components/SPHHeader';
-@use '../../src/components/SPHNavbar';
-@use '../../src/components/SPHSnackbar';
-@use '../../src/components/SPHTextField';
+// @use '../../src/components/SPHAppbar';
+@use '../../src/SPHButton';
+// @use '../../src/components/SPHCard';
+// @use '../../src/components/SPHHeader';
+// @use '../../src/components/SPHNavbar';
+// @use '../../src/components/SPHSnackbar';
+// @use '../../src/components/SPHTextField';
 
 // @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-@include Theme.config(
+/*@include Theme.config(
     $primary: #474747,
     $secondary: #7ed957
-);
+);*/
 
 @include SPHReset.use();
 
@@ -25,7 +27,7 @@
 body {
     width: 100%;
     height: 100vh;
-    background: var(--sph-theme--primary-dark);
+    background: #181818;
 }
 
 section {
@@ -64,7 +66,7 @@ section {
 // Tweaking variables listed for documentation.
 //
 
-@include SPHAppbar.use() {
+/*@include SPHAppbar.use() {
     // --sph-appbar-fill
     // --sph-appbar-ink
     // --sph-appbar-radius
@@ -73,9 +75,10 @@ section {
     // --sph-appbar-label-ink
     // --sph-appbar-hover-ink
     // --sph-appbar-active-ink
-};
+};*/
 
-@include SPHButton.use($fill: secondary) {
+@include SPHButton.use();
+/*{
     // --sph-button-fill
     // --sph-button-ink
     // --sph-button-radius
@@ -85,9 +88,9 @@ section {
     // --sph-button-active-border
     // --sph-button-disabled-fill
     // --sph-button-disabled-border
-};
+}*/
 
-@include SPHCard.use() {
+/*@include SPHCard.use() {
     // --sph-card-fill
     // --sph-card-ink
     // --sph-card-radius
@@ -120,7 +123,7 @@ section {
     // --sph-text-field-label-ink
     // --sph-text-field-helper-ink
     // --sph-text-field-ink
-};
+};*/
 
 #buttons {
     display: flex !important;
