@@ -35,14 +35,32 @@
 ```shell
 npm install @surpathhub/ugnay
 ```
+1A. Alternatively, you can instantiate the component styles using the official CDN
+```html
+<link rel="stylesheet" href="https://unpkg.com/@surpathhub/ugnay@0.1.0-beta/main.css">
+```
 2. Import all the components that you want to use in your project.
 ```scss
-@use '~@surpathhub/ugnay/Core/Theme';
-@use '~@surpathhub/ugnay/Components/SPHButton';
-@use '~@surpathhub/ugnay/Components/SPHTextField';
+@use '~@surpathhub/ugnay/SPHCore/Theme';
+@use '~@surpathhub/ugnay/SPHButton';
+@use '~@surpathhub/ugnay/SPHTextField';
+```
+2A. Alternatively, if you write in CSS directly, you can use the `@import url()` at-rule.
+```css
+@import url('https://unpkg.com/@surpathhub/ugnay@0.1.0-beta/[component_name]/main.css');
+
+/*  
+    Examples:
+    @import url('https://unpkg.com/@surpathhub/ugnay@0.1.0-beta/SPHAppbar/main.css');
+    @import url('https://unpkg.com/@surpathhub/ugnay@0.1.0-beta/SPHButton/main.css');
+    @import url('https://unpkg.com/@surpathhub/ugnay@0.1.0-beta/SPHHeader/main.css');
+    @import url('https://unpkg.com/@surpathhub/ugnay@0.1.0-beta/SPHTextField/main.css');
+*/
 ```
 3. Call the component styles using the `use()` mixin.
 ```scss
+...
+
 @include SPHComponent.use();
 ```
 4. DONE! Happy styling!
