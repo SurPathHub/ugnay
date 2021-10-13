@@ -7,4 +7,4 @@
 - Knowledge about basic HTML, CSS, JS, and SCSS
 
 ## Component usage documentation
-- The documentation for all the available-to-use components is located [here](src/components).
+- The documentation for all the available-to-use components is located [here](src/README.md).
