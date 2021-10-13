@@ -1,9 +1,11 @@
-## SPHAppBar Documentation
+# SPHAppbar Documentation
+
 - This component uses the [box-icons library](https://boxicons.com/).
 
 ![img.png](img.png)
 
-### HTML
+## HTML
+
 ```html
 <nav class="sc-appbar">
     <div class="sc-appbar__container">
@@ -13,38 +15,77 @@
                 <span class="sc-appbar__item__label">Active Label</span>
             </a>
         </div>
+        <div class="sc-appbar__item">
+            <a href="">
+                <i class="sc-appbar__item__icon bx bxs-like" aria-hidden="true"></i>
+                <span class="sc-appbar__item__label">Active Label</span>
+            </a>
+        </div>
+        <div class="sc-appbar__item">
+            <a href="">
+                <i class="sc-appbar__item__icon bx bxs-like" aria-hidden="true"></i>
+                <span class="sc-appbar__item__label">Active Label</span>
+            </a>
+        </div>
+        <div class="sc-appbar__item">
+            <a href="">
+                <i class="sc-appbar__item__icon bx bxs-like" aria-hidden="true"></i>
+                <span class="sc-appbar__item__label">Active Label</span>
+            </a>
+        </div>
     </div>
 </nav>
 ```
 
-### SCSS
-- Provided below is the code snippet, and the API of the component style.
-#### The `use()` mixin API
-- The parameters in the `use()` mixin API only accept css custom properties from the `theme` config.
+## SCSS/CSS
 
-| Parameter | Effect                                                 |
-|-----------|--------------------------------------------------------|
-| `$fill`   | Changes the overall background color of the component. |
-| `$ink`    | Changes the overall text color of all the component    |
-| `$radius` | Changes the overall border-radius of the component     |
-#### CSS custom properties API
-| Property                  | Effect                                           |
-|---------------------------|--------------------------------------------------|
-| `--sph-appbar-icon-ink`   | Changes the icon text color of the component.    |
-| `--sph-appbar-label-ink`  | Changes the icon text color of the component.    |
-| `--sph-appbar-hover-ink`  | Changes the hover state color of the component.  |
-| `--sph-appbar-active-ink` | Changes the active state color of the component. |
+### CSS Classes & HTML Attributes API
+
+| Class | Effect |
+|-------|--------|
+| `.sph-appbar` | The main appbar component. |
+| `.sph-appbar__container` | The wrapper around the `.appbar__item` elements. |
+| `.sph-appbar__item` | The navigation items inside the appbar. |
+| `.sph-appbar__item__icon` | The icon element of the appbar. |
+| `.sph-appbar__item__icon` | The label element of the appbar. |
+| Adding the `active` class | Renders the appbar item in its active state. |
+
+### SCSS variables API (using `with ()`)
+
+| Property | Effect |
+|----------|--------|
+| `$appbar-fill` | Changes the component's default state background color. |
+| `$appbar-ink` | Changes the component's default state text color. |
+| `$appbar-radius` | Changes the component's border radius. |
+| `$appbar-elevation-color` | Changes the component's elevation/shadow color.  |
+| `$appbar-active-ink` | Changes the component's active state text color. |
+| `$appbar-label-size` | Changes the component's label size. |
+| `$appbar-icon-size` | Changes the component's icon size. |
+
 ```scss
-@use '~@surpathhub/ugnay/components/SPHAppbar';
+@use '~@surpathhub/ugnay/SPHAppbar' with (
+    $appbar-fill: black,
+    $appbar-elevation-color: blue
+);
 
-@include SPHAppbar.use(
-    $fill: primary,
-    $ink: on-primary,
-    $radius: large-radius
-) {
-    --sph-appbar-icon-ink: #custom-color;
-    --sph-appbar-label-ink: #custom-color;
-    --sph-appbar-hover-ink: #custom-color;
-    --sph-appbar-active-ink: #custom-color;
-};
+@include SPHAppbar.use();
+```
+
+### CSS custom properties API
+
+| Property | Effect |
+|----------|--------|
+| `--sph-appbar-fill` | Changes the component's default state background color. |
+| `--sph-appbar-ink` | Changes the component's default state text color. |
+| `--sph-appbar-radius` | Changes the component's border radius. |
+| `--sph-appbar-active-ink` | Changes the component's active state text color. |
+| `--sph-appbar-label-size` | Changes the component's label size. |
+| `--sph-appbar-icon-size` | Changes the component's icon size. |
+
+```css
+.sph-appbar {
+    --sph-appbar-fill: blue;
+    --sph-appbar-active-ink: yellow;
+    --sph-appbar-icon-ink: #FF9900;
+}
 ```
