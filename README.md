@@ -7,4 +7,4 @@
 - Knowledge about basic HTML, CSS, JS, and SCSS
 
 ## Component usage documentation
-- The documentation for all the available-to-use components is located [here](src/README.md).
+- The documentation for all the available-to-use components is located [here](https://sph-docs.netlify.app/docs/ugnay).
