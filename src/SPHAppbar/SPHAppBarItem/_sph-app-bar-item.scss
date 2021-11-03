@@ -26,18 +26,24 @@
 @mixin use(
     $ink,
     $active-ink,
-    $icon-size: 18px,
-    $label-size: 14px
+    $icon-size,
+    $label-size,
+    $breakpoint
 ) {
     .sc-appbar__item {
         display: flex;
-        flex-flow: row nowrap;
         justify-content: center;
         align-items: center;
+        flex-basis: 100%;
         
         a {
             display: flex;
+            flex-flow: column nowrap;
             align-items: center;
+            
+            @media (min-width: Theme.get-breakpoint($breakpoint)) {
+                flex-flow: row nowrap;
+            }
             
             .sc-appbar__item__icon {
                 color: Theme.key-create('appbar-item-icon-ink', inherit);
@@ -45,14 +51,16 @@
             }
             
             .sc-appbar__item__label {
-                display: none;
-                margin-left: 0.3rem;
-                font-size: Theme.key-create('appbar-item-label-size', Typography.px-to-rem($label-size));
+                margin-top: 0.1rem;
                 white-space: nowrap;
+                font-size: Theme.key-create('appbar-item-label-size', Typography.px-to-rem($label-size));
                 color: Theme.key-create('appbar-item-label-ink', inherit);
                 
-                @media (min-width: 570px) {
-                    display: block;
+                @media (min-width: Theme.get-breakpoint($breakpoint)) {
+                    display: inline-block;
+                    margin-top: 0;
+                    margin-left: 0.3rem;
+                    font-size: Theme.key-create('appbar-item-label-size', Typography.px-to-rem($label-size + 3px));
                     
                     &:hover {
                         text-decoration: underline;
@@ -66,7 +74,7 @@
             color: Theme.key-create('appbar-item-active-ink', $active-ink);
             
             .sc-appbar__item__label {
-                display: inline-block;
+                // display: inline-block;
                 font-weight: 700;
                 white-space: nowrap;
             }

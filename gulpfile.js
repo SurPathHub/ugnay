@@ -31,16 +31,22 @@ function sassTaskDev() {
         .pipe(dest('./src', {sourcemaps: '.'}));
 }
 
+function sassTaskTest() {
+    return src(['test/**/*.scss'], {sourcemaps: true})
+        .pipe(sass().on('error', sass.logError))
+        .pipe(dest('./test', {sourcemaps: '.'}));
+}
+
 function watchTask() {
     watch(['src/**/*.scss', '!src/**/*.test.scss'], sassTaskDev());
-    // watch(['test/**/*.scss'], sassTaskTest());
+    watch(['test/**/*.scss'], sassTaskTest());
     // watch(['src/main.scss'], sassTaskProd());
     // watch('test/scripts/**/*.ts', tsTask());
 }
 
 exports.default = series(
     sassTaskDev,
-    //sassTaskTest,
+    sassTaskTest,
     // sassTaskProd,
     // watchTask
 );

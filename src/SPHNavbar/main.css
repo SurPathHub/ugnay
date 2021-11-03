@@ -32,7 +32,7 @@
 .sph-js-navbar__trigger > * {
   font-size: 24px;
 }
-@media (min-width: 570px) {
+@media (min-width: 540px) {
   .sph-js-navbar__trigger {
     display: none;
   }
@@ -57,7 +57,7 @@
   display: block;
   transition: all 0.1s ease;
 }
-@media (min-width: 570px) {
+@media (min-width: 540px) {
   .sph-navbar {
     display: flex;
     align-items: center;
@@ -113,5 +113,4 @@
     width: max-content;
   }
 }
-
 /*# sourceMappingURL=main.css.map */

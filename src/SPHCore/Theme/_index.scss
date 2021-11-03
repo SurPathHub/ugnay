@@ -20,6 +20,12 @@
 // SOFTWARE.
 //
 
+$breakpoints: (
+    'small': 320px,
+    'medium': 540px,
+    'large': 877px
+) !default;
+
 @forward 'theme-setters';
-@forward 'theme-getters';
+@forward 'theme-getters' with ($breakpoints: $breakpoints);
 @forward 'theme-keys' as key-*;

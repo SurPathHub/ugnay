@@ -20,4 +20,14 @@
 // SOFTWARE.
 //
 
+@use 'sass:map';
 
+$breakpoints: (
+    'small': 320px,
+    'medium': 540px,
+    'large': 877px
+) !default;
+
+@function get-breakpoint($query) {
+    @return map.get($breakpoints, $query);
+}

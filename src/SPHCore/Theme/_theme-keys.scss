@@ -26,9 +26,13 @@
 $prefix: 'sph' !default;
 
 @function create($key, $value) {
-  @return var(--#{$prefix}-#{$key}, #{$value});
+    @return var(--#{$prefix}-#{$key}, #{$value});
 }
 
 @function get($query) {
-  @return var(--#{$prefix}-#{$query});
+    @return var(--#{$prefix}-#{$query});
+}
+
+@mixin bind($key, $value) {
+    --#{$prefix}-#{$key}: #{$value};
 }

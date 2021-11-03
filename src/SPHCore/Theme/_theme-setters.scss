@@ -20,36 +20,41 @@
 // SOFTWARE.
 //
 
+@use 'sass:meta';
+
 @use '../Color/color-getters' as Color;
+@use 'theme-keys' as key;
 
-$primary: #474747 !default;
-$secondary: #7ed957 !default;
-
-$prefix: 'sph' !default;
+$context: 'theme';
 
 @mixin config(
     $primary,
-    $secondary
+    $secondary,
+    $args...
 ) {
     $_primary-map: Color.get-split($primary);
     $_secondary-map: Color.get-split($secondary);
     
     @each $property, $value in $_primary-map {
         @if $property == 'default' {
-            --#{$prefix}-theme--primary: #{$value};
+            @include key.bind(#{$context}--primary, $value);
         } @else {
-            --#{$prefix}-theme--primary-#{$property}: #{$value};
+            @include key.bind(#{$context}--primary-#{$property}, $value);
         }
     }
     
     @each $property, $value in $_secondary-map {
         @if $property == 'default' {
-            --#{$prefix}-theme--secondary: #{$value};
+            @include key.bind(#{$context}--secondary, $value);
         } @else {
-            --#{$prefix}-theme--secondary-#{$property}: #{$value};
+            @include key.bind(#{$context}--secondary-#{$property}, $value);
         }
     }
     
-    --#{$prefix}-theme--on-primary: #{Color.get-ink($primary)};
-    --#{$prefix}-theme--on-secondary: #{Color.get-ink($secondary)};
+    @include key.bind(#{$context}--on-primary, Color.get-ink($primary));
+    @include key.bind(#{$context}--on-secondary, Color.get-ink($secondary));
+    
+    @each $property, $value in meta.keywords($args) {
+        @include key.bind(#{$context}--#{$property}, $value);
+    }
 }

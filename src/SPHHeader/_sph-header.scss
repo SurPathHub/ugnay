@@ -29,17 +29,19 @@ $header-ink: var(--sph-theme--on-primary) !default;
 $header-radius: 0 !default;
 
 $header-size: 22px !default;
-$header-logo-width: 50px !default;
-$header-logo-height: 50px !default;
+$header-logo-width: 40px !default;
+$header-logo-height: 40px !default;
 $header-elevation-color: #000 !default;
 
-@mixin use() {
-
+@mixin use($breakpoint: 'medium') {
     .sph-header {
         width: 100%;
-        height: Theme.key-create('header-logo-height', $header-logo-height);
+        // height: Theme.key-create('header-logo-height', $header-logo-height);
         position: fixed;
         top: 0;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
         background: Theme.key-create('header-fill', $header-fill);
         color: Theme.key-create('header-ink', $header-ink);
         border-radius: Theme.key-create('header-radius', $header-radius);
@@ -48,20 +50,27 @@ $header-elevation-color: #000 !default;
         @include Elevation.apply(5, $header-elevation-color);
 
         .sph-header__wrap {
+            max-width: 1240px;
             display: flex;
             flex-flow: row nowrap;
             justify-content: space-between;
-
-            max-width: 1270px;
-
+    
+            padding: 0.5rem 0;
             width: calc(100% - 20px);
             margin: 0 auto;
+            
+            @media (min-width: Theme.get-breakpoint($breakpoint)) {
+                width: calc(100% - 30px);
+                padding: 0.5rem 0.3rem;
+            }
 
             > a {
+                display: flex;
+                align-items: center;
                 flex-basis: max-content;
             }
 
-            .sph-header__mast {
+            .sph-header__brand {
                 display: grid;
                 grid-template-columns: Theme.key-create('header-logo-width', $header-logo-width) auto;
                 align-items: center;
@@ -70,7 +79,7 @@ $header-elevation-color: #000 !default;
                     width: Theme.key-create('header-logo-width', $header-logo-width);
                     height: Theme.key-create('header-logo-height', $header-logo-height);
                 }
-                .sph-header__text {
+                .sph-header__title {
                     font-size: Theme.key-create('header-size', Typography.px-to-rem($header-size));
                 }
             }

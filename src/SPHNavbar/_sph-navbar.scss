@@ -36,7 +36,7 @@ $navbar-elevation-color: #000 !default;
 
 $navbar-item-hover-fill: var(--sph-theme--primary-light) !default;
 
-@mixin use() {
+@mixin use($breakpoint: 'medium') {
     .sph-js-navbar__trigger {
         width: 100%;
         display: grid;
@@ -52,7 +52,7 @@ $navbar-item-hover-fill: var(--sph-theme--primary-light) !default;
             font-size: 24px;
         }
 
-        @media (min-width: 570px) {
+        @media (min-width: Theme.get-breakpoint($breakpoint)) {
             display: none;
         }
     }
@@ -79,7 +79,7 @@ $navbar-item-hover-fill: var(--sph-theme--primary-light) !default;
             transition: all 0.1s ease;
         }
 
-        @media (min-width: 570px) {
+        @media (min-width: Theme.get-breakpoint($breakpoint)) {
             display: flex;
             align-items: center;
             position: relative;

@@ -30,11 +30,11 @@ $appbar-ink: var(--sph-theme--on-primary) !default;
 $appbar-active-ink: var(--sph-theme--secondary) !default;
 $appbar-radius: 0 !default;
 
-$appbar-icon-size: 20px !default;
-$appbar-label-size: 16px !default;
+$appbar-icon-size: 19px !default;
+$appbar-label-size: 13px !default;
 $appbar-elevation-color: #000 !default;
 
-@mixin use() {
+@mixin use($breakpoint: 'medium') {
     .sc-appbar {
         width: 100%;
         position: fixed;
@@ -47,7 +47,7 @@ $appbar-elevation-color: #000 !default;
 
         @include Elevation.apply(5, $appbar-elevation-color);
 
-        @media (min-width: 570px) {
+        @media (min-width: Theme.get-breakpoint($breakpoint)) {
             background: rgba(0 0 0 / 0);
             position: relative;
             bottom: auto;
@@ -61,9 +61,11 @@ $appbar-elevation-color: #000 !default;
             display: flex;
             flex-flow: row nowrap;
             justify-content: space-around;
-            padding: 1rem 0.7rem;
+            padding: 0.5rem 0;
 
-            @media (min-width: 570px) {
+            @media (min-width: Theme.get-breakpoint($breakpoint)) {
+                padding: 0;
+                
                 & > * + * {
                     margin-left: 1rem;
                 }
@@ -73,7 +75,8 @@ $appbar-elevation-color: #000 !default;
                 $appbar-ink,
                 $appbar-active-ink,
                 $appbar-icon-size,
-                $appbar-label-size
+                $appbar-label-size,
+                $breakpoint
             );
         }
     }

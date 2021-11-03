@@ -22,7 +22,6 @@
 
 @use 'sass:list';
 
-@use '../SPHCore/Color';
 @use '../SPHCore/Typography';
 @use '../SPHCore/Theme';
 @use '../SPHCore/Elevation';
@@ -75,8 +74,13 @@ $button-elevation-color: #000000 !default;
         
         @include Elevation.apply(0, $button-elevation-color);
         
+        &:hover {
+            background-color: rgba(#fff, 10%);
+        }
+        
         &:focus {
             border-color: rgba(#c4c4c4, 50%);
+            background-color: rgba(#fff, 12.5%);
         }
         
         &:active {
@@ -85,7 +89,7 @@ $button-elevation-color: #000000 !default;
         
         &:disabled,
         &--disabled {
-            color: Theme.key-create('button-disabled-fill', $button-disabled-fill);
+            color: Theme.key-create('button-disabled-fill', $button-disabled-fill) !important;
             cursor: default;
             
             &:hover {
@@ -116,6 +120,7 @@ $button-elevation-color: #000000 !default;
 @mixin _sph-button-outlined {
     &.sph-button--outlined {
         border-color: #535353;
+        color: Theme.key-create('button-fill', $button-fill);
         
         &:hover,
         &:focus {
@@ -124,12 +129,23 @@ $button-elevation-color: #000000 !default;
         
         &:active {
             border-color: Theme.key-create('button-active-fill', $button-active-fill);
+            color: Theme.key-create('button-active-fill', $button-active-fill);
         }
         
         &:disabled,
         &--disabled {
             border-color: #363636;
             cursor: default;
+            color: Theme.key-create('button-disabled-fill', $button-disabled-fill) !important;
+            
+            &:hover,
+            &:focus {
+                border-color: #363636;
+            }
+    
+            &:active {
+                border-color: #363636;
+            }
         }
     }
 }
@@ -138,23 +154,24 @@ $button-elevation-color: #000000 !default;
     &.sph-button--filled {
         border-color: Theme.key-create('button-fill', $button-fill);
         background-color: Theme.key-create('button-fill', $button-fill);
-        color: Theme.key-create('button-ink', $button-ink);
+        color: Theme.key-create('button-ink', $button-ink) !important;
         
         &:hover,
         &:focus {
-            @include Elevation.apply(2, $button-elevation-color);
+            // @include Elevation.apply(2, $button-elevation-color);
         }
         
         &:active {
             background-color: Theme.key-create('button-active-fill', $button-active-fill);
             border-color: Theme.key-create('button-active-fill', $button-active-fill);
-            @include Elevation.apply(4, $button-elevation-color);
+            // @include Elevation.apply(4, $button-elevation-color);
         }
         
         &:disabled,
         &--disabled {
-            background-color: Theme.key-create('button-disabled-fill', $button-disabled-fill);
-            border-color: Theme.key-create('button-disabled-fill', $button-disabled-fill);
+            color: Theme.key-create('button-ink', $button-ink) !important;
+            background-color: Theme.key-create('button-disabled-fill', $button-disabled-fill) !important;
+            border-color: Theme.key-create('button-disabled-fill', $button-disabled-fill) !important;
             cursor: default;
             
             &:hover {

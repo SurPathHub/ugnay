@@ -27,10 +27,10 @@
 |-------|--------|
 | `.sph-header` | The main header component. |
 | `.sph-header__wrap` | The wrapper for all the sub elements in the header. |
-| `.sph-header__mast` | The divider and wrapper for all the branding related elements in the header. |
+| `.sph-header__brand` | The divider and wrapper for all the branding related elements in the header. |
 | `.sph-header__actions` | The divider and wrapper for all the action related elements in the header. |
 | `.sph-header__logo` | The logo element in the header. |
-| `.sph-header__text` | The website name in the header. |
+| `.sph-header__title` | The website name in the header. |
 
 ### SCSS variables API (using `with ()`)
 
