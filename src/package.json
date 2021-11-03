@@ -10,9 +10,6 @@
     "type": "git",
     "url": "git+https://github.com/SurPathHub/ugnay-components-web.git"
   },
-  "dependencies": {
-    "@matteusan/sentro": "^0.1.4"
-  },
   "keywords": [
     "design-system",
     "scss",
