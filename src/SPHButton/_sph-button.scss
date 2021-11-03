@@ -59,6 +59,8 @@ $button-elevation-color: #000000 !default;
 
 @mixin sph-button-base {
     .sph-button {
+        width: 100%;
+        max-width: max-content;
         display: inline-flex;
         flex-flow: row nowrap;
         justify-content: center;
